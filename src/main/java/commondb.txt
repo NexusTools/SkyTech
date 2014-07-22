@@ -1,0 +1,394 @@
+212629331
+9:9:13076&Water
+10:10:1&Lava
+1:0:130832743&Stone
+11:10:3474&Lava
+9:8:156&Water
+8:9:2&Water
+2:0:1045721&Grass Block
+9:11:2366&Water
+8:10:1&Water
+3:0:13243385&Dirt
+9:10:4293&Water
+8:11:1&Water
+4:0:19186&Cobblestone
+9:13:501&Water
+9:12:929&Water
+11:14:542&Lava
+5:0:54757&Oak Wood Planks
+7:1:13124&Bedrock
+9:15:235&Water
+7:0:12058546&Bedrock
+9:14:370&Water
+11:12:1197&Lava
+8:0:97780&Water
+9:1:16984&Water
+10:2:36&Lava
+11:3:2&Lava
+9:0:27505992&Water
+8:1:648&Water
+11:2:4118&Lava
+10:0:1371804&Lava
+9:3:11264&Water
+8:2:643&Water
+9:2:13561&Water
+8:3:649&Water
+11:0:47372&Lava
+10:1:125&Lava
+12:0:2348258&Sand
+9:5:8031&Water
+8:4:571&Water
+10:6:134&Lava
+11:7:2&Lava
+13:0:2277206&Gravel
+9:4:9505&Water
+8:5:540&Water
+11:6:2479&Lava
+14:0:95322&Gold Ore
+9:7:5859&Water
+8:6:563&Water
+10:4:129&Lava
+11:5:2&Lava
+15:0:575565&Iron Ore
+9:6:7019&Water
+11:4:3072&Lava
+8:7:560&Water
+16:0:974127&Coal Ore
+17:1:6363&Spruce Wood
+18:2:22682&Birch Leaves
+17:0:46507&Oak Wood
+18:3:169771&Jungle Leaves
+18:0:578807&Oak Leaves
+17:3:76934&Jungle Wood
+19:0:1398&Sponge
+17:2:6161&Birch Wood
+18:1:21727&Spruce Leaves
+21:0:24655&Lapis Lazuli Ore
+17:4:47320&Oak Wood
+24:0:284289&Sandstone
+18:10:25429&Oak Leaves
+17:8:32188&Oak Wood
+1054:7:83194&Coral Rock
+18:11:104413&Oak Leaves
+18:8:634501&Oak Leaves
+18:9:20144&Oak Leaves
+1054:2:39466&Rutile Ore
+1055:3:96&Pearl Oyster
+31:2:13176&Fern
+1055:2:70&Pearl Oyster
+31:1:115506&Grass
+30:0:9470&Cobweb
+1055:1:74&Pearl Oyster
+1055:0:80&Pearl Oyster
+32:0:273&Dead Bush
+37:0:4462&Flower
+38:0:1061&Rose
+39:0:1278&Mushroom
+40:0:559&Mushroom
+48:0:7584&Moss Stone
+50:2:256&Torch
+49:0:16920&Obsidian
+50:3:150&Torch
+54:4:48&Chest
+3122:0:654&Rubber Wood
+54:5:66&Chest
+51:0:118&Fire
+50:1:366&Torch
+3123:0:5607&Rubber Leaves
+3122:1:614&Rubber Wood
+54:2:75&Chest
+52:0:269&Monster Spawner
+1077:0:118&Gas Leak
+54:3:59&Chest
+50:4:130&Torch
+56:0:22833&Diamond Ore
+3123:8:566&Dry Rubber Leaves
+66:2:4&Track
+67:3:16&Stone Stairs
+3137:0:1316&Sludge.name
+66:3:9&Track
+67:2:8&Stone Stairs
+66:0:6207&Track
+67:1:8&Stone Stairs
+66:1:4393&Track
+3139:0:2602&Sewage.name
+67:0:10&Stone Stairs
+2116:0:1605&Shale Gas
+66:6:11&Track
+67:7:16&Stone Stairs
+65:5:8&Ladder
+2116:1:974&Shale Oil
+66:7:9&Track
+67:6:16&Stone Stairs
+67:5:18&Stone Stairs
+66:5:11&Track
+67:4:18&Stone Stairs
+73:0:157662&Redstone Ore
+66:8:6&Track
+66:9:6&Track
+78:0:47876&Snow
+79:0:1578&Ice
+2130:2:37775&Peridot Ore
+81:0:371&Cactus
+82:0:59112&Clay
+2130:0:20810&Ruby Ore
+2130:1:21421&Sapphire Ore
+83:0:300&Sugar cane
+86:2:14&Pumpkin
+85:0:39003&Fence
+86:3:6&Pumpkin
+86:0:11&Pumpkin
+86:1:6&Pumpkin
+89:0:310&Glowstone
+97:0:1592&Stone Monster Egg
+106:8:43274&Vines
+101:0:4&Iron Bars
+3175:0:2131&Algae
+106:2:48048&Vines
+106:1:55571&Vines
+106:4:55124&Vines
+111:0:534&Lily Pad
+2163:3:498&Darkwood Wood
+2163:2:352&Mangrove Wood
+2163:1:524&Canopy Tree Wood
+2163:0:422&Twilight Oak Wood
+127:11:62&Cocoa
+127:10:70&Cocoa
+127:9:47&Cocoa
+127:8:57&Cocoa
+127:7:80&Cocoa
+121:0:544&End Stone
+127:6:51&Cocoa
+127:5:58&Cocoa
+127:4:59&Cocoa
+127:3:50&Cocoa
+127:2:76&Cocoa
+127:1:60&Cocoa
+2175:0:46113&Dark Iron Ore
+127:0:61&Cocoa
+2176:0:607&Timewood
+2176:1:721&Transwood
+129:0:177&Emerald Ore
+2176:2:581&Minewood
+2176:3:559&Sortingwood
+2202:10:16885&Lime Leaves
+2202:11:17583&Yellow Leaves
+2202:8:17879&Gray Leaves
+2202:9:20835&Pink Leaves
+2202:14:16014&Orange Leaves
+2202:15:13481&White Leaves
+2202:12:13506&Light Blue Leaves
+2202:13:14863&Magenta Leaves
+2202:2:12106&Green Leaves
+2202:3:13867&Brown Leaves
+2202:0:11114&Black Leaves
+2202:1:10541&Red Leaves
+2202:6:18328&Cyan Leaves
+2204:0:43283&Rainbow Leaves
+2202:7:18413&Light Gray Leaves
+2204:2:52&Rainbow Leaves
+2202:4:12761&Blue Leaves
+2202:5:18074&Purple Leaves
+3235:0:92&Liquified Slime
+3237:1:8&Congealed Green Slime
+3237:0:94&Congealed Blue Slime
+3238:0:498&Slimy Grass
+3239:0:56&Slimy Grass
+3240:0:292&Slimy Leaves
+3257:9:94&Blueberry Bush
+3251:3:640&Hopseed Wood
+3257:8:230&Raspberry Bush
+3251:2:550&Ghostwood
+3259:10:110&NLeaves.name
+3258:11:432&block.leaves..name
+3251:1:942&Sakura Wood
+3257:11:8&Maloberry Bush
+3259:9:421&NLeaves.name
+3258:8:7436&block.leaves..name
+3251:0:1553&Eucalyptus Wood
+3257:10:154&Blackberry Bush
+3259:8:19484&NLeaves.name
+3257:13:28&Blueberry Bush
+3260:8:40&Replicator
+3257:12:74&Raspberry Bush
+3257:15:2&Maloberry Bush
+3251:5:246&Hopseed Wood
+3254:0:14&Saguaro Cactus
+3257:14:40&Blackberry Bush
+3257:1:6&Blueberry Bush
+3257:0:10&Raspberry Bush
+3259:2:600&Hopseed Leaves
+3258:3:1598&Willow Leaves
+3259:1:4603&Eucalyptus Leaves
+3258:0:3116&Sakura Leaves
+3251:9:166&Hopseed Wood
+3257:2:14&Blackberry Bush
+3259:0:22438&Redwood Leaves
+3257:5:10&Blueberry Bush
+3261:1:4892&Redwood
+3261:0:7878&Redwood Bark
+3257:4:12&Raspberry Bush
+3257:7:2&Maloberry Bush
+3263:0:519&Bloodwood
+3260:3:26&Replicator
+3257:6:10&Blackberry Bush
+196:0:166318&Red Sandstone
+3278:10:1702&Tiger Leaves
+3278:11:262&Tiger Leaves
+3271:1:428&Fusewood
+3278:8:252&Tiger Leaves
+3271:0:638&Darkwood
+3278:9:110&Tiger Leaves
+3277:1:471&Silverbell Wood
+3278:2:1678&Amaranth Leaves
+3277:0:905&Maple Wood
+3278:3:231&Tiger Leaves
+3277:3:746&Tiger Wood
+3278:0:270&Maple Leaves
+3277:2:1445&Amaranth Wood
+3278:1:102&Silverbell Leaves
+3280:0:420&Willow Wood
+3281:0:12&Bluebells
+2272:1:32546&Galena Ore
+2273:0:1264719&Black Granite
+2272:2:58&Iridium Ore
+2272:5:23998&Bauxite Ore
+2272:7:64&Cinnabar Ore
+2272:8:614&Sphalerite Ore
+2273:8:1145161&Red Granite
+2272:9:456&Tungstate Ore
+2272:10:86&Sheldonite Ore
+2272:13:11870&Tetrahedrite Ore
+2272:14:1026&Cassiterite Ore
+2272:15:366&Nickel Ore
+1374:0:14&Water Hive
+2403:3:48129&Water Infused Stone
+2404:4:544&Ethereal Bloom
+2405:5:223&Greatwood Log
+2403:2:22768&Fire Infused Stone
+2405:4:1625&Greatwood Log
+2403:1:23181&Air Infused Stone
+2405:6:4&Greatwood Log
+2405:1:364&Silverwood Log
+2403:6:20287&Entropy Infused Stone
+2405:0:2477&Greatwood Log
+2403:5:20349&Order Infused Stone
+2406:0:12103&Greatwood Leaves
+2404:2:130&Shimmerleaf
+2403:4:30216&Earth Infused Stone
+2406:1:4208&Silverwood Leaves
+2405:2:3&tile.blockMagicalLog.silverwoodknot.name
+2404:3:2&Cinderpearl
+2405:9:113&Greatwood Log
+2405:8:1058&Greatwood Log
+2406:8:25985&Greatwood Leaves
+2406:9:5156&Silverwood Leaves
+2405:10:3&Greatwood Log
+1399:7:1&Marshy Hive
+2416:0:2&Aura Node
+1399:6:2&Wintry Hive
+1399:4:17&Tropical Hive
+1399:3:9&Modest Hive
+1399:2:20&Meadows Hive
+1398:0:37058&Apatite Ore
+1399:1:36&Forest Hive
+2424:0:180&tile.blockManaPod.name
+2424:1:145&tile.blockManaPod.name
+2424:2:185&tile.blockManaPod.name
+2424:3:114&tile.blockManaPod.name
+2431:0:73994&Mimichite Ore
+3483:0:41506&Uranium Ore
+3487:0:1132&Rubber Tree Leaves
+3489:1:689&Rubber Wood
+3489:3:8&Rubber Wood
+3489:2:8&Rubber Wood
+3489:5:4&Rubber Wood
+3489:4:2&Rubber Wood
+432:5:20321&Platinum Ore
+1485:12:26&Iron Oreberry Bush
+1476:5:2662&Blue Slimedirt
+1486:12:54&Aluminum Oreberry Bush
+1485:15:32&Tin Oreberry Bush
+1486:13:14&Essence Berry Bush
+1485:14:16&Copper Oreberry Bush
+1475:5:137373&Aluminum Ore
+458:2:649&Dark Diamond Ore
+458:3:642&Dark Emerald Ore
+458:1:358586&Saltpeter Ore
+458:4:2047&Dark Lapis Lazuli Ore
+457:7:51633&Quarried Stone
+457:6:2346199&Abyssal Stone
+1488:0:20&Iron Gravel Ore
+1488:1:95&Gold Gravel Ore
+1488:2:318&Copper Gravel Ore
+1488:3:466&Tin Gravel Ore
+1488:4:711&Aluminum Gravel Ore
+1522:0:151&Water Spring
+1530:0:18167&Oil
+3636:0:311736&Essence Ore
+2735:0:453462&Limestone
+2746:0:449476&Marble
+3791:0:653&Acacia Log
+3794:0:532&Ash Log
+3805:0:597&Canopy Tree Log
+3813:0:725&Fir Log
+3821:0:375&Ironwood Log
+3826:0:508&Mangrove Log
+3829:0:542&Palm Log
+3832:0:552&Poplar Log
+3837:0:585&Redwood Log
+776:8:928281&Gneiss
+776:9:791108&Peridotite
+776:10:1184152&Quartz
+776:11:483620&Granulite
+776:12:36895&Hornfel
+776:13:380470&Migmatite
+776:14:968984&Schist
+776:15:64816&Onyx
+776:0:1332970&Granite
+776:1:466199&Basalt
+776:2:902331&Marble
+776:3:499740&Limestone
+776:4:440814&Shale
+780:0:399184&Opal
+776:5:513361&Sandstone
+776:6:359011&Pumice
+854:0:88286&Certus Quartz Ore
+1933:1:547&Cherry Wood
+1934:2:619&Mangrove Wood
+1934:3:592&Palm Wood
+1933:0:551&Acacia Wood
+1935:1:537&Willow Wood
+1934:0:607&Loftwood Wood
+1933:3:548&Fir Wood
+1933:2:550&Dark Wood
+1934:1:593&Magic Wood
+1935:0:569&Redwood Wood
+1974:2:661&Jacaranda Wood
+1974:0:483&Pine Wood
+1974:1:376&Hellbark Wood
+4030:0:3944&Vanilla Plant
+4035:0:41645&Salt Ore
+2001:1:207155&Tin Ore
+2001:0:201898&Copper Ore
+2001:3:129937&Lead Ore
+2001:2:147309&Silver Ore
+2001:4:70885&Ferrous Ore
+2031:0:68391&Fluorite Ore
+2036:7:108991&Calcite
+1021:9:4160&Purple Coral
+2036:1:143257&Pitchblende
+1021:8:4230&Orange Coral
+2036:2:109803&Cadmium Ore
+1015:0:71853&Quantum Ore
+2036:3:39266&Indium Ore
+1021:5:4080&Candycane Coral
+1021:4:4158&Blue Coral
+1021:7:4106&Brain Coral
+1021:6:4068&Cucumber Coral
+1021:1:7986&Kelp
+2036:8:20002&Magnetite Ore
+1020:0:43760&Natural Gas
+1021:0:8056&Kelp
+1021:3:4272&Red Coral
+1021:2:4060&Pink Coral

@@ -1,0 +1,16 @@
+[
+{
+  "modid": "skytech",
+  "name": "SkyTech",
+  "description": "",
+  "version": "1.0",
+  "mcversion": "1.6.4",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["Aero"],
+  "credits": "Everything else in the universe",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
