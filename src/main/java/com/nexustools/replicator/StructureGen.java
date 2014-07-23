@@ -156,8 +156,8 @@ public class StructureGen {
         }catch(Throwable t){}
         try{
             //15158:20 insulated copper wire
-            nonvanilla[1] = new ItemStack(Item.itemsList[15158], 3);
-            nonvanilla[1].setItemDamage(20);
+            nonvanilla[1] = new ItemStack(Item.itemsList[30184], 3); // 30184:0
+            nonvanilla[1].setItemDamage(0);
         }catch(Throwable t){}
         
         /*

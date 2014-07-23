@@ -25,6 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
 /**
@@ -99,8 +100,8 @@ public class BCommand extends BlockCommandBlock {
 //                }
 //            }
 //        }
-        
-        if(w.getBlockId(chck.x+poi.x*512, chck.y, chck.z + poi.y*512) != 15111) // haaaax
+        //add(new RB(Block.bedrock.blockID, 0, 60, 0));
+        if(w.getBlockId(chck.x+poi.x*512, chck.y, chck.z + poi.y*512) != chck.id) // haaaax
             for (final RB b : StructureGen.skyblock) {
                 w.setBlock(b.x + poi.x * 512, b.y, b.z + poi.y * 512, b.id, b.meta, b.flags);
                 if(b.inv != null){
@@ -125,13 +126,12 @@ public class BCommand extends BlockCommandBlock {
 
                 }
             }
-//        w.upd
-        p.setLocationAndAngles(poi.x*512, 67, poi.y*512, 0, 0);
-//        par5EntityPlayer.setL
+        
+        p.setSpawnChunk(new ChunkCoordinates(poi.x*512, 68, poi.y*512), true);
+        
+        p.setLocationAndAngles(poi.x*512, 68, poi.y*512, 0, 0);
+        
         return true;
-//        System.exit(0);-
-//        return false;
-//        return super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9); //To change body of generated methods, choose Tools | Templates.
     }
 
     private Point getNextAvailableProperty() {
