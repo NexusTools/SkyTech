@@ -9,6 +9,11 @@ package com.nexustools.replicator;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import java.awt.Point;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +33,7 @@ public class BCommand extends BlockCommandBlock {
 
     public BCommand(int par1) {
         super(par1);
+        loaddb();
         setTextureName("command_block");
     }
 
@@ -79,9 +85,6 @@ public class BCommand extends BlockCommandBlock {
 //        return super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void savedb() {
-    }
-
     private Point getNextAvailableProperty() {
         Point low = new Point(0, 1);
         boolean unsafe = true;
@@ -105,7 +108,38 @@ public class BCommand extends BlockCommandBlock {
         return low;
     }
 
-    private void savegdb() {
+    private void savedb() {
+        try{
+            File db = new File(Cache.cachedir + "skyplayers.db");
+            FileOutputStream out = new FileOutputStream(db);
+            DataOutputStream dout = new DataOutputStream(out);
+            dout.writeInt(occupancies.size());
+            for(String s : occupancies.keySet()){
+                out.write(s.length());
+                out.write(s.getBytes());
+                Point p = occupancies.get(s);
+                dout.writeDouble(p.getX());
+                dout.writeDouble(p.getY());
+            }
+        }catch(Throwable t){}
+    }
+
+    private void loaddb() {
+        try{
+            File db = new File(Cache.cachedir + "skyplayers.db");
+            if(!db.exists())return;
+            FileInputStream in = new FileInputStream(db);
+            DataInputStream din = new DataInputStream(in);
+            int len = din.readInt();
+            for(int i = 0; i < len; i++){
+                String str = "";
+                int strl = in.read();
+                for(int s = 0; s < strl; s++)str+=(char)in.read();
+                double x = din.readDouble();
+                double y = din.readDouble();
+                occupancies.put(str, new Point((int)x, (int)y));
+            }
+        }catch(Throwable t){}
     }
     
 }
