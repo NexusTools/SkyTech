@@ -91,11 +91,11 @@ public class ReplicatorMod {
         BCommand = new BCommand(REPLICATOR_BLOCKID+1);
         handler = new GHandler();
         
+        GameRegistry.registerBlock(BCommand, "Command");
+        LanguageRegistry.addName(BCommand, "Command");
+        
         GameRegistry.registerBlock(BReplicator, "Replicator");
         LanguageRegistry.addName(BReplicator, "Replicator");
-        
-        GameRegistry.registerBlock(BCommand, "Replicator"); // set to this because its bugging..
-        LanguageRegistry.addName(BCommand, "Replicator"); // set to this because its bugging..
         
         GameRegistry.registerTileEntity(TEReplicator.class, "TEReplicator");
         

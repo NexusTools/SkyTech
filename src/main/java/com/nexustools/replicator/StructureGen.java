@@ -148,12 +148,54 @@ public class StructureGen {
             }
         }
         
+        ItemStack[] nonvanilla = new ItemStack[2];
+        
+        try{
+            nonvanilla[0] = new ItemStack(Item.itemsList[650], 1);//650:1
+            nonvanilla[0].setItemDamage(1);
+        }catch(Throwable t){}
+        try{
+            //15158:20 insulated copper wire
+            nonvanilla[1] = new ItemStack(Item.itemsList[15158], 3);
+            nonvanilla[1].setItemDamage(20);
+        }catch(Throwable t){}
+        
+        /*
+        
+        1x replicator
+        1x medium solar array
+        3x insulated copper wire (why not lul)
+        3x lava block
+        3x ice block
+        2x oak saplings (skyblock no longer nesisarily generates with a tree, as they are affected by biomes.)
+        2x bone (bonemeal is a lot less efficient now, not sure about this one though)
+        12x string (original skyblock had this)
+        1x red mushroom (original skyblock had this)
+        1x brown mushroom (original skyblock had this)
+        1x watermelon slice (original skyblock had this)
+        1x pumpkin seed (original skyblock had this)
+        1x cactus (original skyblock had this)
+        1x reed/sugarcane (original skyblock had this)
+        
+        */
+        
+        
         ItemStack[] items = new ItemStack[]{
             new ItemStack(Block.blocksList[ReplicatorMod.REPLICATOR_BLOCKID], 1),
             new ItemStack(Block.lavaMoving, 3),
             new ItemStack(Block.ice, 4),
             new ItemStack(Block.sapling, 2),
-            new ItemStack(Item.bone, 2)
+            new ItemStack(Item.bone, 2),
+            new ItemStack(Item.silk, 12),
+            
+            nonvanilla[0],
+            nonvanilla[1],
+            
+            new ItemStack(Item.melon, 1),
+            new ItemStack(Item.pumpkinSeeds, 1),
+            new ItemStack(Block.cactus, 1),
+            new ItemStack(Item.reed, 1)
+            
         };
 //        IC2.
         // 2 65 2

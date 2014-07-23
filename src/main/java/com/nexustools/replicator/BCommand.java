@@ -14,11 +14,15 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockCommandBlock;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.world.World;
@@ -50,6 +54,51 @@ public class BCommand extends BlockCommandBlock {
         final Point poi = occupancies.get(str);
         
         RB chck = StructureGen.skyblock.get(0); // bedrock
+//        
+//        new Thread(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//
+//                for (Item i : Item.itemsList) {
+//                    try{
+//                        if (i != null) {
+//                            String iname = i.getItemDisplayName(new ItemStack(i, 1)).toLowerCase();
+//                            System.out.println("[ITM] " + i.itemID + ":0 " + iname);
+//                            ItemStack stk;
+//                            for (int inc = 0; inc < 255; inc++) {
+//                                stk = new ItemStack(i, 1);
+//                                stk.setItemDamage(inc);
+//                                String sname = i.getItemDisplayName(stk).toLowerCase();
+//                                if (sname != null && !sname.equals(iname)) {
+//                                    System.out.println("[ITM] " + i.itemID + ":" + inc + " " + sname);
+//                                    iname = sname;
+//                                }
+//                            }
+//                        }
+//                    }catch(Throwable t){}
+//                }
+//            }
+//        }).start();
+        
+//        for(Block i : Block.blocksList){
+//            if(i != null){
+////                i.getBlock
+////                Item i = new
+//                String iname = i.getItemDisplayName(new ItemStack(i, 1)).toLowerCase();
+//                System.out.println("[ITM] " + i.itemID + ":0 " + iname);
+//                ItemStack stk;
+//                for(int inc = 0; inc < 255; inc++){
+//                    stk = new ItemStack(i, 1);
+//                    stk.setItemDamage(inc);
+//                    String sname = i.getItemDisplayName(stk).toLowerCase();
+//                    if(sname != null && !sname.equals(iname)){
+//                        System.out.println("[ITM] " + i.itemID + ":"+inc+" " + sname);
+//                        iname = sname;
+//                    }
+//                }
+//            }
+//        }
         
         if(w.getBlockId(chck.x+poi.x*512, chck.y, chck.z + poi.y*512) != 15111) // haaaax
             for (final RB b : StructureGen.skyblock) {
