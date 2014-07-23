@@ -42,8 +42,8 @@ public static void addLibraryPath(String pathToAdd) throws Exception {
             
     public static void main(String[] args) {
         try {
-                System.setProperty("java.library.path", "C:\\forge-1.6.4-9.11.1.964-src\\build\\natives\\");
-                addLibraryPath("C:\\forge-1.6.4-9.11.1.964-src\\build\\natives\\");
+                System.setProperty("java.library.path", "C:\\SkyTech\\build\\natives\\");
+                addLibraryPath("C:\\SkyTech\\build\\natives\\");
                 Field path = ClassLoader.class.getDeclaredField("sys_paths");
                 path.setAccessible(true);
                 path.set(null, null);

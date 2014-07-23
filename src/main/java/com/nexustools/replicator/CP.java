@@ -7,8 +7,10 @@
 package com.nexustools.replicator;
 
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldProvider;
+import net.minecraftforge.client.IRenderHandler;
 
 /**
  *
@@ -16,50 +18,57 @@ import net.minecraft.world.WorldProvider;
  */
 public class CP extends WorldProvider {
     
-//    HashMap<
-    
-    {
-//        System.exit(0);
-    }
-
     @Override
     public String getDimensionName() {
         return "Skyblock";
     }
     
-//    this
-
+    boolean hak = true;
+    
     @Override
     public ChunkCoordinates getSpawnPoint() {
-        return new ChunkCoordinates(0,128,0);
-//        return super.getSpawnPoint(); //To change body of generated methods, choose Tools | Templates.
+        if(hak){
+            hak = false;
+            for(RB rb : StructureGen.lobby){
+                this.worldObj.setBlock(rb.x, rb.y, rb.z, rb.id, rb.meta, rb.flags);
+                
+                if(rb.tileEntity){
+//                    this.worldObj.setBlockMetadataWithNotify(rb.x, rb.y, rb.z, rb.meta, rb.flags);
+                    TileEntity e = this.worldObj.getBlockTileEntity(rb.x, rb.y, rb.z);
+//                    this.worldObj
+                    if(rb.nbt != null && e != null)
+                        e.writeToNBT(rb.nbt);
+                }
+//                this.worldObj.setN
+            }
+        }
+//        try{throw new Throwable("stack");}catch(Throwable t){t.printStackTrace();}
+        return new ChunkCoordinates(0,40,-3);
     }
-    
-//    this.
 
     @Override
     public ChunkCoordinates getEntrancePortalLocation() {
-        return super.getEntrancePortalLocation(); //To change body of generated methods, choose Tools | Templates.
+        return super.getEntrancePortalLocation();
     }
 
     @Override
     public int getRespawnDimension(EntityPlayerMP player) {
-        return super.getRespawnDimension(player); //To change body of generated methods, choose Tools | Templates.
+        return super.getRespawnDimension(player);
     }
 
     @Override
     public double getHorizon() {
-        return 0.0D; //To change body of generated methods, choose Tools | Templates.
+        return 0.0D;
     }
 
     @Override
     public int getActualHeight() {
-        return super.getActualHeight(); //To change body of generated methods, choose Tools | Templates.
+        return super.getActualHeight();
     }
 
     @Override
     public float getCloudHeight() {
-        return 200F; //To change body of generated methods, choose Tools | Templates.
+        return 16F;
     }
     @Override
     public int getAverageGroundLevel() {
