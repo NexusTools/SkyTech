@@ -172,10 +172,14 @@ public class GReplicator extends GuiContainer {
     String suggestcar = "";
     
     void setSearchItem(int uuid){
+        
         int id =  (uuid >> 16);
         int meta =  (uuid & 0xffff);
         
+        ItemStack is = new ItemStack(Item.itemsList[id], 1);
+        is.setItemDamage(meta);
         
+        this.ent.setSearchSlotContentsClient(is, uuid);
         
     }
 

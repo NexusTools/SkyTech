@@ -6,6 +6,7 @@
 package com.nexustools.skytech;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -99,10 +100,44 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     
     public void setOutputSlotContents(ItemStack is){
         output = is;
+        sync();
     }
     
-    public void setSearchSlotContents(ItemStack is){
+    public void setSearchSlotContentsClient(ItemStack is, int uuid){
         search = is;
+        cost = (int) (MAX_EU*ItemNameDatabase.values.get(uuid));
+        sync(uuid);
+    }
+    
+    void setSearchSlotContentsServer(int uuid) {
+        int id =  (uuid >> 16);
+        int meta =  (uuid & 0xffff);
+        search = new ItemStack(Item.itemsList[id],1);
+        search.setItemDamage(meta);
+        cost = (int) (MAX_EU*ItemNameDatabase.values.get(uuid));
+    }
+    
+    public void replicate(){
+        if(output == null){
+            STORED_EU -= cost;
+            output = search.copy();
+            sync();
+        }else{
+            if(output.itemID == search.itemID){
+                if(output.getItemDamage() == search.getItemDamage()){
+                    STORED_EU -= cost;
+                    output.stackSize++; // work? D:
+                    sync();
+                }
+            }
+        }
+    }
+    
+    public void sync(int ... data){
+        Side side = FMLCommonHandler.instance().getEffectiveSide();
+        if(side.isClient() && data.length>0){
+            PacketDispatcher.sendPacketToServer(Packetron.generatePacket(12, data[0], xCoord, yCoord, zCoord));
+        }
     }
 
     @Override
@@ -314,16 +349,17 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
             sendEnPacket();
             pt = 0;
         }
-        if(this.enoughEnergyToSynergize()){
-//            if(realinv == null)realinv = inv;
-        }else{
-//            Side side = FMLCommonHandler.instance().getEffectiveSide();
-//            if (side == Side.SERVER) {
-//                realinv = null;
-//            }else{
-//                realinvswch = true;
-//            }
-        }
+//        if(this.enoughEnergyToSynergize()){
+////            this.set
+////            if(realinv == null)realinv = inv;
+//        }else{
+////            Side side = FMLCommonHandler.instance().getEffectiveSide();
+////            if (side == Side.SERVER) {
+////                realinv = null;
+////            }else{
+////                realinvswch = true;
+////            }
+//        }
         if (amount + STORED_EU > MAX_EU) {
             System.out.println("MAXING OUT");
             double rem = MAX_EU - STORED_EU;

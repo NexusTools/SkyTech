@@ -33,10 +33,21 @@ public class ReplicatorNet implements IPacketHandler {
         switch(din.read()){
             
             case 12:{ // setSearchItem
+                //data[0], xCoord, yCoord, zCoord
+                int uuid = din.readInt();
+                x = din.readInt();
+                y = din.readInt();
+                z = din.readInt();
+                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+                e.setSearchSlotContentsServer(uuid);
                 break;
             }
             
-            case 13:{ // activate
+            case 13:{//setOutputItem
+                break;
+            }
+            
+            case 14:{ // activate
                 break;
             }
             
@@ -127,120 +138,120 @@ public class ReplicatorNet implements IPacketHandler {
                 break;
                 
             //@Deprecated
-            case 9: // back item id
-                System.out.println("backItem");
-                x = ((packet.data[1]&0xFF  << 24) + (packet.data[2]&0xFF  << 16) + (packet.data[3]&0xFF  << 8) + (packet.data[4]&0xFF  << 0));
-                y = ((packet.data[5]&0xFF  << 8) + (packet.data[6]&0xFF  << 0));
-                z = ((packet.data[7]&0xFF  << 24) + (packet.data[8]&0xFF  << 16) + (packet.data[9]&0xFF  << 8) + (packet.data[10]&0xFF  << 0));
-                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
-                if(e != null){
-                    Trip tri = new Trip(x,y,z);
-                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
-                    if(contain != null){
-                        contain.setItemIndex(Math.abs(contain.getItemIndex()-1));
-                    }else{
-                        System.out.println("CONTAIN NULL");
-                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
-                            System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
-                        }
-                    }
-//                    e.
-//                    e.blockType.cre
-                }System.out.println("->backItem");
-                break;
-            
-                //@Deprecated
-            case 10: // forward item id
-                System.out.println("forwardItem");
-                x = ((packet.data[1]&0xFF  << 24) + (packet.data[2]&0xFF  << 16) + (packet.data[3]&0xFF  << 8) + (packet.data[4]&0xFF  << 0));
-                y = ((packet.data[5]&0xFF  << 8) + (packet.data[6]&0xFF  << 0));
-                z = ((packet.data[7]&0xFF  << 24) + (packet.data[8]&0xFF  << 16) + (packet.data[9]&0xFF  << 8) + (packet.data[10]&0xFF  << 0));
-                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
-                if(e != null){
-                    Trip tri = new Trip(x,y,z);
-                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
-                    if(contain != null){
-                        contain.setItemIndex(Math.abs(contain.getItemIndex()+1));
-                    }else{
-                        System.out.println("CONTAIN NULL");
-                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
-                            System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
-                        }
-                    }
-//                    e.
-//                    e.blockType.cre
-                }System.out.println("->forwardItem");
-                break;
-                
-                //@Deprecated
-            case 11: // set item
-                x = din.readInt();
-                y = din.readShort();
-                z = din.readInt();
-                int rawid = din.readInt();
+//            case 9: // back item id
+//                System.out.println("backItem");
 //                x = ((packet.data[1]&0xFF  << 24) + (packet.data[2]&0xFF  << 16) + (packet.data[3]&0xFF  << 8) + (packet.data[4]&0xFF  << 0));
 //                y = ((packet.data[5]&0xFF  << 8) + (packet.data[6]&0xFF  << 0));
 //                z = ((packet.data[7]&0xFF  << 24) + (packet.data[8]&0xFF  << 16) + (packet.data[9]&0xFF  << 8) + (packet.data[10]&0xFF  << 0));
-//                int id = ((packet.data[11]&0xFF  << 8) + (packet.data[12]&0xFF  << 0));
-//                short id = (short)((packet.data[11]&0xFF << 8) + (packet.data[12]&0xFF << 0));
-                // THIS IS REDICULOUS WHY DOESNT THE ABOVE WORK, OH WELL INSANE HAX TIME
-//                String hex0 = Integer.toHexString(packet.data[11]&0xFF);
-//                if(hex0.length()==1)hex0 = "0" + hex0;
-//                String hex1 = Integer.toHexString(packet.data[12]&0xFF);
-//                if(hex1.length()==1)hex1 = "0" + hex1;
-//                
-//                int id = Integer.parseInt("00"+hex0+hex1, 16);
-//                System.out.println(id + " -> 0x"+"00"+hex0+hex1);
-//                
-//                hex0 = Integer.toHexString(packet.data[1]&0xFF);
-//                if(hex0.length()==1)hex0 = "0" + hex0;
-//                hex1 = Integer.toHexString(packet.data[2]&0xFF);
-//                if(hex1.length()==1)hex1 = "0" + hex1;
-//                String hex2 = Integer.toHexString(packet.data[3]&0xFF);
-//                if(hex2.length()==1)hex2 = "0" + hex2;
-//                String hex3 = Integer.toHexString(packet.data[4]&0xFF);
-//                if(hex3.length()==1)hex3 = "0" + hex3;
-//                
-//                x = Integer.parseInt(hex0+hex1+hex2+hex3,16);
-//                
-//                hex0 = Integer.toHexString(packet.data[5]&0xFF);
-//                if(hex0.length()==1)hex0 = "0" + hex0;
-//                hex1 = Integer.toHexString(packet.data[6]&0xFF);
-//                if(hex1.length()==1)hex1 = "0" + hex1;
-//
-//                
-//                y = Integer.parseInt("00"+hex0+hex1,16);
-//                
-//                hex0 = Integer.toHexString(packet.data[7]&0xFF);
-//                if(hex0.length()==1)hex0 = "0" + hex0;
-//                hex1 = Integer.toHexString(packet.data[8]&0xFF);
-//                if(hex1.length()==1)hex1 = "0" + hex1;
-//                hex2 = Integer.toHexString(packet.data[9]&0xFF);
-//                if(hex2.length()==1)hex2 = "0" + hex2;
-//                hex3 = Integer.toHexString(packet.data[10]&0xFF);
-//                if(hex3.length()==1)hex3 = "0" + hex3;
-//                
-//                z = Integer.parseInt(hex0+hex1+hex2+hex3,16);
-//                
-//                
-//                //END INSANE HAX, SERIOUSLY WTF
+//                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+//                if(e != null){
+//                    Trip tri = new Trip(x,y,z);
+//                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
+//                    if(contain != null){
+//                        contain.setItemIndex(Math.abs(contain.getItemIndex()-1));
+//                    }else{
+//                        System.out.println("CONTAIN NULL");
+//                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
+//                            System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
+//                        }
+//                    }
+////                    e.
+////                    e.blockType.cre
+//                }System.out.println("->backItem");
+//                break;
+            
+                //@Deprecated
+//            case 10: // forward item id
+//                System.out.println("forwardItem");
+//                x = ((packet.data[1]&0xFF  << 24) + (packet.data[2]&0xFF  << 16) + (packet.data[3]&0xFF  << 8) + (packet.data[4]&0xFF  << 0));
+//                y = ((packet.data[5]&0xFF  << 8) + (packet.data[6]&0xFF  << 0));
+//                z = ((packet.data[7]&0xFF  << 24) + (packet.data[8]&0xFF  << 16) + (packet.data[9]&0xFF  << 8) + (packet.data[10]&0xFF  << 0));
+//                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+//                if(e != null){
+//                    Trip tri = new Trip(x,y,z);
+//                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
+//                    if(contain != null){
+//                        contain.setItemIndex(Math.abs(contain.getItemIndex()+1));
+//                    }else{
+//                        System.out.println("CONTAIN NULL");
+//                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
+//                            System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
+//                        }
+//                    }
+////                    e.
+////                    e.blockType.cre
+//                }System.out.println("->forwardItem");
+//                break;
                 
-                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
-                if(e != null){
-                    Trip tri = new Trip(x,y,z);
-                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
-                    if(contain != null){
-                        contain.setItemIndex(rawid);
-                    }else{
-                        System.out.println("CONTAIN NULL");
-                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
-                            System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
-                        }
-                    }
-//                    e.
-//                    e.blockType.cre
-                }else{System.out.println("TEReplicator["+x+","+y+","+z+"] == NULL!");}System.out.println("->setItem " + rawid + "{0x"+Integer.toHexString(packet.data[11]&0xFF)+",0x"+Integer.toHexString(packet.data[12]&0xFF)+"}");
-                break;
+                //@Deprecated
+//            case 11: // set item
+//                x = din.readInt();
+//                y = din.readShort();
+//                z = din.readInt();
+//                int rawid = din.readInt();
+////                x = ((packet.data[1]&0xFF  << 24) + (packet.data[2]&0xFF  << 16) + (packet.data[3]&0xFF  << 8) + (packet.data[4]&0xFF  << 0));
+////                y = ((packet.data[5]&0xFF  << 8) + (packet.data[6]&0xFF  << 0));
+////                z = ((packet.data[7]&0xFF  << 24) + (packet.data[8]&0xFF  << 16) + (packet.data[9]&0xFF  << 8) + (packet.data[10]&0xFF  << 0));
+////                int id = ((packet.data[11]&0xFF  << 8) + (packet.data[12]&0xFF  << 0));
+////                short id = (short)((packet.data[11]&0xFF << 8) + (packet.data[12]&0xFF << 0));
+//                // THIS IS REDICULOUS WHY DOESNT THE ABOVE WORK, OH WELL INSANE HAX TIME
+////                String hex0 = Integer.toHexString(packet.data[11]&0xFF);
+////                if(hex0.length()==1)hex0 = "0" + hex0;
+////                String hex1 = Integer.toHexString(packet.data[12]&0xFF);
+////                if(hex1.length()==1)hex1 = "0" + hex1;
+////                
+////                int id = Integer.parseInt("00"+hex0+hex1, 16);
+////                System.out.println(id + " -> 0x"+"00"+hex0+hex1);
+////                
+////                hex0 = Integer.toHexString(packet.data[1]&0xFF);
+////                if(hex0.length()==1)hex0 = "0" + hex0;
+////                hex1 = Integer.toHexString(packet.data[2]&0xFF);
+////                if(hex1.length()==1)hex1 = "0" + hex1;
+////                String hex2 = Integer.toHexString(packet.data[3]&0xFF);
+////                if(hex2.length()==1)hex2 = "0" + hex2;
+////                String hex3 = Integer.toHexString(packet.data[4]&0xFF);
+////                if(hex3.length()==1)hex3 = "0" + hex3;
+////                
+////                x = Integer.parseInt(hex0+hex1+hex2+hex3,16);
+////                
+////                hex0 = Integer.toHexString(packet.data[5]&0xFF);
+////                if(hex0.length()==1)hex0 = "0" + hex0;
+////                hex1 = Integer.toHexString(packet.data[6]&0xFF);
+////                if(hex1.length()==1)hex1 = "0" + hex1;
+////
+////                
+////                y = Integer.parseInt("00"+hex0+hex1,16);
+////                
+////                hex0 = Integer.toHexString(packet.data[7]&0xFF);
+////                if(hex0.length()==1)hex0 = "0" + hex0;
+////                hex1 = Integer.toHexString(packet.data[8]&0xFF);
+////                if(hex1.length()==1)hex1 = "0" + hex1;
+////                hex2 = Integer.toHexString(packet.data[9]&0xFF);
+////                if(hex2.length()==1)hex2 = "0" + hex2;
+////                hex3 = Integer.toHexString(packet.data[10]&0xFF);
+////                if(hex3.length()==1)hex3 = "0" + hex3;
+////                
+////                z = Integer.parseInt(hex0+hex1+hex2+hex3,16);
+////                
+////                
+////                //END INSANE HAX, SERIOUSLY WTF
+//                
+//                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+//                if(e != null){
+//                    Trip tri = new Trip(x,y,z);
+//                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
+//                    if(contain != null){
+//                        contain.setItemIndex(rawid);
+//                    }else{
+//                        System.out.println("CONTAIN NULL");
+//                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
+//                            System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
+//                        }
+//                    }
+////                    e.
+////                    e.blockType.cre
+//                }else{System.out.println("TEReplicator["+x+","+y+","+z+"] == NULL!");}System.out.println("->setItem " + rawid + "{0x"+Integer.toHexString(packet.data[11]&0xFF)+",0x"+Integer.toHexString(packet.data[12]&0xFF)+"}");
+//                break;
                 
             default: System.out.println("ERR: Unknown opcode: " + packet.data[0]);break;
         }
