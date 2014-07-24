@@ -87,7 +87,7 @@ public class ReplicatorMod {
             Logger.getLogger(ReplicatorMod.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        BReplicator = new BReplicator(REPLICATOR_BLOCKID, false);
+        BReplicator = new BReplicator(REPLICATOR_BLOCKID);
         BCommand = new BCommand(REPLICATOR_BLOCKID+1);
         handler = new GHandler();
         

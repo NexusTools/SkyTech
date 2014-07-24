@@ -22,34 +22,20 @@ import net.minecraft.world.World;
 
 public class BReplicator extends BlockContainer { // code taken from BlockFurnace
 
-    /**
-     * Is the random generator used by furnace to drop the inventory contents in
-     * random directions.
-     */
-    private final Random furnaceRand = new Random();
-
-    /**
-     * True if this is an active furnace, false if idle
-     */
-    private final boolean isActive;
-
-    /**
-     * This flag is used to prevent the furnace inventory to be dropped upon
-     * block removal, is used internally when the furnace block changes from
-     * idle to active and vice-versa.
-     */
-    private static boolean keepFurnaceInventory;
-    @SideOnly(Side.CLIENT)
-    private Icon furnaceIconTop;
-    @SideOnly(Side.CLIENT)
-    private Icon furnaceIconFront;
     @SideOnly(Side.CLIENT)
     private Icon[] icons = new Icon[8];
     
+    
+    public static final int IDX_FRONT = 4;//0 // top is left   /// left is right /// front is top // bottom is front
+    public static final int IDX_LEFT = 2;//1
+    public static final int IDX_RIGHT = 3;//2
+    public static final int IDX_TOP = 1;//3
+    public static final int IDX_BOTTOM = 0;//4
+    public static final int IDX_BACK = 5;//5
+    
 
-    protected BReplicator(int par1, boolean par2) {
-        super(par1, Material.rock);
-        this.isActive = par2;
+    protected BReplicator(int par1) {
+        super(par1, Material.iron);
         this.setCreativeTab(CreativeTabs.tabRedstone);
     }
     
@@ -110,7 +96,6 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
      */
     public Icon getIcon(int par1, int par2) {
         return icons[par1];
-//        return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != par2 ? this.blockIcon : this.furnaceIconFront));
     }
 
     @SideOnly(Side.CLIENT)
@@ -122,9 +107,11 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
      */
     public void registerIcons(IconRegister r) {
         this.blockIcon = r.registerIcon("replicatormod:replicator");
-        for(int i = 0; i < 8; i++)icons[i]  = blockIcon;
-        this.furnaceIconFront = r.registerIcon(this.isActive ? "furnace_front_on" : "furnace_front_off");
-        this.furnaceIconTop = r.registerIcon("furnace_top");
+        icons[IDX_TOP] = icons[IDX_BOTTOM] = blockIcon;
+        icons[IDX_FRONT] = r.registerIcon("replicatormod:replicator-front");
+        icons[IDX_BACK] = r.registerIcon("replicatormod:replicator-rear");
+        icons[IDX_LEFT] = r.registerIcon("replicatormod:replicator-left");
+        icons[IDX_RIGHT] = r.registerIcon("replicatormod:replicator-right");
 
     }
 
@@ -132,13 +119,11 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z,
-            EntityPlayer player, int metadata, float what, float these, float are) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float what, float these, float are) {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking()) {
             return false;
         }
-        //code to open gui explained later
         player.openGui(ReplicatorMod.instance, 0, world, x, y, z);
         ((TEReplicator)tileEntity).watchedBy.add(player);
         return true;
