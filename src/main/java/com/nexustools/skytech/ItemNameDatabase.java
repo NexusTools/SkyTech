@@ -188,21 +188,24 @@ public class ItemNameDatabase {
                 
                 percval = bedperc;
                 
-                if(percval < 1){
-                    percval = 1;
-                }
-                
-                String strl = str.toLowerCase();
-                if(strl.contains("coal") || strl.equals("coal")){ // I like to be overzealous sometimes because I'm too lazy
+                if(percval < 2){
                     percval = 2;
                 }
                 
-                if(strl.contains("copper") || strl.contains("tin")){
-                    percval = 3;
-                }
+                String strl = str.toLowerCase();
                 
-                if(strl.contains("iron")){
-                    percval /= 2;
+                if(!strl.contains("berry")){
+                    if(strl.contains("coal") || strl.equals("coal")){ // I like to be overzealous sometimes because I'm too lazy
+                        percval = 2;
+                    }
+
+                    if(strl.contains("copper") || strl.contains("tin") || strl.contains("certus")){
+                        percval = 3;
+                    }
+
+                    if(strl.contains("iron")){
+                        percval /= 2;
+                    }
                 }
                 
                 values.put(database.get(str), percval/200d);

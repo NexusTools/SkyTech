@@ -113,6 +113,9 @@ public class BCommand extends BlockCommandBlock {
                                 Thread.sleep(10000);
                                 TileEntityChest t = (TileEntityChest)w.getBlockTileEntity(b.x + poi.x * 512, b.y, b.z + poi.y * 512);
                                 for(int i = 0; i < b.inv.length; i++){
+                                    if(b.inv[i].itemID == 650){ // TEMPORARY FTB FIX (no idea why this is happening, I think something is weirdly cached
+                                        b.inv[i].setItemDamage(0);
+                                    }
                                     t.setInventorySlotContents(i, b.inv[i]);
                                 }
                                 ChatMessageComponent ct = new ChatMessageComponent();

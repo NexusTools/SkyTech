@@ -148,7 +148,7 @@ public class StructureGen {
             }
         }
         
-        ItemStack[] nonvanilla = new ItemStack[2];
+        ItemStack[] nonvanilla = new ItemStack[3];
         
         try{
             nonvanilla[0] = new ItemStack(Item.itemsList[650], 0);//650:1
@@ -160,6 +160,10 @@ public class StructureGen {
             nonvanilla[1].setItemDamage(0);
         }catch(Throwable t){}
         
+        try{
+            nonvanilla[2] = new ItemStack(Item.itemsList[3468], 2);
+//            nonvanilla[2].setItemDamage(0);
+        }catch(Throwable t){}
         /*
         
         1x replicator
@@ -190,11 +194,13 @@ public class StructureGen {
             
             nonvanilla[0],
             nonvanilla[1],
+            nonvanilla[2],
             
             new ItemStack(Item.melon, 1),
             new ItemStack(Item.pumpkinSeeds, 1),
             new ItemStack(Block.cactus, 1),
-            new ItemStack(Item.reed, 1)
+            new ItemStack(Item.reed, 1),
+            new ItemStack(Item.bed, 1)
             
         };
 //        IC2.

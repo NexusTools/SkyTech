@@ -118,7 +118,9 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
             return false;
         }
         player.openGui(SkyTech.instance, 0, world, x, y, z);
-        ((TEReplicator)tileEntity).watchedBy.add(player);
+        TEReplicator rep = ((TEReplicator)tileEntity);
+        rep.watchedBy.clear(); // temporary hackfix
+        rep.watchedBy.add(player);
         return true;
     }
 
