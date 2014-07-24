@@ -34,11 +34,11 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 
-@Mod(modid = SkyTech.MODID, version = SkyTech.VERSION)
+@Mod(modid = ReplicatorMod.MODID, version = ReplicatorMod.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true, channels={"ReplicatorGUI"}, packetHandler = ReplicatorNet.class)
-public class SkyTech {
+public class ReplicatorMod {
 
-    public static final String MODID = "skytech";
+    public static final String MODID = "replicatormod";
     public static final String VERSION = "1.0";
 
     Block BReplicator;
@@ -46,12 +46,12 @@ public class SkyTech {
     
     public GHandler handler;
     
-    public SkyTech(){
+    public ReplicatorMod(){
         DimensionManagerregisterProviderType(0, CP.class, true); // INSANE HACKS
     }
     
-    @Instance("skytech")
-    public static SkyTech instance = new SkyTech();
+    @Instance("replicatormod")
+    public static ReplicatorMod instance = new ReplicatorMod();
     
     private void DimensionManagerregisterProviderType(int i, Class<CP> man, boolean b) {
         try {
@@ -84,7 +84,7 @@ public class SkyTech {
         try {
             Cache.validateCache(Minecraft.getMinecraft().mcDataDir);
         } catch (IOException ex) {
-            Logger.getLogger(SkyTech.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReplicatorMod.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         BReplicator = new BReplicator(REPLICATOR_BLOCKID);

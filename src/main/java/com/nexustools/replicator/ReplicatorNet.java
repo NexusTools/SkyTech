@@ -122,12 +122,12 @@ public class ReplicatorNet implements IPacketHandler {
                 e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
                 if(e != null){
                     Trip tri = new Trip(x,y,z);
-                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
+                    CReplicator contain = ReplicatorMod.instance.handler.containers.get(tri);
                     if(contain != null){
                         contain.setItemIndex(Math.abs(contain.getItemIndex()-1));
                     }else{
                         System.out.println("CONTAIN NULL");
-                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
+                        for(Trip t : ReplicatorMod.instance.handler.containers.keySet()){
                             System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
                         }
                     }
@@ -144,12 +144,12 @@ public class ReplicatorNet implements IPacketHandler {
                 e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
                 if(e != null){
                     Trip tri = new Trip(x,y,z);
-                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
+                    CReplicator contain = ReplicatorMod.instance.handler.containers.get(tri);
                     if(contain != null){
                         contain.setItemIndex(Math.abs(contain.getItemIndex()+1));
                     }else{
                         System.out.println("CONTAIN NULL");
-                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
+                        for(Trip t : ReplicatorMod.instance.handler.containers.keySet()){
                             System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
                         }
                     }
@@ -213,12 +213,12 @@ public class ReplicatorNet implements IPacketHandler {
                 e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
                 if(e != null){
                     Trip tri = new Trip(x,y,z);
-                    CReplicator contain = SkyTech.instance.handler.containers.get(tri);
+                    CReplicator contain = ReplicatorMod.instance.handler.containers.get(tri);
                     if(contain != null){
                         contain.setItemIndex(rawid);
                     }else{
                         System.out.println("CONTAIN NULL");
-                        for(Trip t : SkyTech.instance.handler.containers.keySet()){
+                        for(Trip t : ReplicatorMod.instance.handler.containers.keySet()){
                             System.out.println(t.x + " " + t.y + " " + t.z + "("+tri.x + " " + tri.y + " " + tri.z+")");
                         }
                     }

@@ -106,12 +106,12 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
      * register icons.
      */
     public void registerIcons(IconRegister r) {
-        this.blockIcon = r.registerIcon("skytech:replicator");
+        this.blockIcon = r.registerIcon("replicatormod:replicator");
         icons[IDX_TOP] = icons[IDX_BOTTOM] = blockIcon;
-        icons[IDX_FRONT] = r.registerIcon("skytech:replicator-front");
-        icons[IDX_BACK] = r.registerIcon("skytech:replicator-rear");
-        icons[IDX_LEFT] = r.registerIcon("skytech:replicator-left");
-        icons[IDX_RIGHT] = r.registerIcon("skytech:replicator-right");
+        icons[IDX_FRONT] = r.registerIcon("replicatormod:replicator-front");
+        icons[IDX_BACK] = r.registerIcon("replicatormod:replicator-rear");
+        icons[IDX_LEFT] = r.registerIcon("replicatormod:replicator-left");
+        icons[IDX_RIGHT] = r.registerIcon("replicatormod:replicator-right");
 
     }
 
@@ -124,7 +124,7 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
         if (tileEntity == null || player.isSneaking()) {
             return false;
         }
-        player.openGui(SkyTech.instance, 0, world, x, y, z);
+        player.openGui(ReplicatorMod.instance, 0, world, x, y, z);
         ((TEReplicator)tileEntity).watchedBy.add(player);
         return true;
     }
