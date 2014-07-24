@@ -181,7 +181,7 @@ public class StructureGen {
         
         
         ItemStack[] items = new ItemStack[]{
-            new ItemStack(Block.blocksList[ReplicatorMod.REPLICATOR_BLOCKID], 1),
+            new ItemStack(Block.blocksList[SkyTech.REPLICATOR_BLOCKID], 1),
             new ItemStack(Block.lavaMoving, 3),
             new ItemStack(Block.ice, 4),
             new ItemStack(Block.sapling, 2),
