@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.nexustools.replicator;
+package com.nexustools.skytech;
 
 import net.minecraft.item.Item;
 

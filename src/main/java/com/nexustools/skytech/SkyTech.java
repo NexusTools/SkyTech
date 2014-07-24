@@ -1,4 +1,4 @@
-package com.nexustools.replicator;
+package com.nexustools.skytech;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;

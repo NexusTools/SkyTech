@@ -1,4 +1,4 @@
-package com.nexustools.replicator; /// TAKEN DIRECTLY FROM MINECRAFT DECOMPILE
+package com.nexustools.skytech; /// TAKEN DIRECTLY FROM MINECRAFT DECOMPILE
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
