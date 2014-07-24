@@ -151,7 +151,7 @@ public class StructureGen {
         ItemStack[] nonvanilla = new ItemStack[2];
         
         try{
-            nonvanilla[0] = new ItemStack(Item.itemsList[650], 1);//650:1
+            nonvanilla[0] = new ItemStack(Item.itemsList[650], 0);//650:1
             nonvanilla[0].setItemDamage(1);
         }catch(Throwable t){}
         try{

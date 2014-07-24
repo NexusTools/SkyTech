@@ -188,8 +188,8 @@ public class ItemNameDatabase {
                 
                 percval = bedperc;
                 
-                if(percval < 8){
-                    percval = 8;
+                if(percval < 2){
+                    percval = 2;
                 }
                 
                 values.put(database.get(str), percval/200d);
