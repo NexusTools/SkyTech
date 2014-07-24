@@ -57,92 +57,88 @@ public class GReplicator extends GuiContainer {
         this.ent = ent;
         this.ply = play.player;
         ItemNameDatabase.checkScrape();
-//        this.i
-//        this.drawSlotInventory(null);
-//        this.c
-        
     }
     
     int lmx = 0;
     int lmy = 0;
-    
-    void setItemID(int id){
-        try {
-            Packet250CustomPayload pl = new Packet250CustomPayload();
-            pl.channel = "ReplicatorGUI";
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            DataOutputStream dout = new DataOutputStream(out);
-            dout.write(11);
-            dout.writeInt(ent.xCoord);
-            dout.writeShort(ent.yCoord);
-            dout.writeInt(ent.zCoord);
-            dout.writeInt(id);
-            pl.data = out.toByteArray();
-            pl.length = pl.data.length;
-//        pl.length = 13;
+//    
+//    void setItemID(int id){
+//        try {
+//            Packet250CustomPayload pl = new Packet250CustomPayload();
+//            pl.channel = "ReplicatorGUI";
+//            ByteArrayOutputStream out = new ByteArrayOutputStream();
+//            DataOutputStream dout = new DataOutputStream(out);
+//            dout.write(11);
+//            dout.writeInt(ent.xCoord);
+//            dout.writeShort(ent.yCoord);
+//            dout.writeInt(ent.zCoord);
+//            dout.writeInt(id);
+//            pl.data = out.toByteArray();
+//            pl.length = pl.data.length;
+////        pl.length = 13;
+////
+////        pl.data = new byte[13];
+////        pl.data[0] = 11;
+////        pl.data[1] = (byte) (char) ((ent.xCoord >>> 24) & 0xFF);
+////        pl.data[2] = (byte) (char) ((ent.xCoord >>> 16) & 0xFF);
+////        pl.data[3] = (byte) (char) ((ent.xCoord >>> 8) & 0xFF);
+////        pl.data[4] = (byte) (char) ((ent.xCoord >>> 0) & 0xFF);
+////        pl.data[5] = (byte) (char) ((ent.yCoord >>> 8) & 0xFF);
+////        pl.data[6] = (byte) (char) ((ent.yCoord >>> 0) & 0xFF);
+////        pl.data[7] = (byte) (char) ((ent.zCoord >>> 24) & 0xFF);
+////        pl.data[8] = (byte) (char) ((ent.zCoord >>> 16) & 0xFF);
+////        pl.data[9] = (byte) (char) ((ent.zCoord >>> 8) & 0xFF);
+////        pl.data[10] = (byte) (char) ((ent.zCoord >>> 0) & 0xFF);
+////        pl.data[11] = (byte) (char) ((id >>> 8) & 0xFF);
+////        pl.data[12] = (byte) (char) ((id >>> 0) & 0xFF);
+//            PacketDispatcher.sendPacketToServer(pl); 
+//        } catch (IOException ex) {
+//            Logger.getLogger(GReplicator.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 //
-//        pl.data = new byte[13];
-//        pl.data[0] = 11;
-//        pl.data[1] = (byte) (char) ((ent.xCoord >>> 24) & 0xFF);
-//        pl.data[2] = (byte) (char) ((ent.xCoord >>> 16) & 0xFF);
-//        pl.data[3] = (byte) (char) ((ent.xCoord >>> 8) & 0xFF);
-//        pl.data[4] = (byte) (char) ((ent.xCoord >>> 0) & 0xFF);
-//        pl.data[5] = (byte) (char) ((ent.yCoord >>> 8) & 0xFF);
-//        pl.data[6] = (byte) (char) ((ent.yCoord >>> 0) & 0xFF);
-//        pl.data[7] = (byte) (char) ((ent.zCoord >>> 24) & 0xFF);
-//        pl.data[8] = (byte) (char) ((ent.zCoord >>> 16) & 0xFF);
-//        pl.data[9] = (byte) (char) ((ent.zCoord >>> 8) & 0xFF);
-//        pl.data[10] = (byte) (char) ((ent.zCoord >>> 0) & 0xFF);
-//        pl.data[11] = (byte) (char) ((id >>> 8) & 0xFF);
-//        pl.data[12] = (byte) (char) ((id >>> 0) & 0xFF);
-            PacketDispatcher.sendPacketToServer(pl); 
-        } catch (IOException ex) {
-            Logger.getLogger(GReplicator.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    void moveItemID(int amt){
-        Packet250CustomPayload pl = new Packet250CustomPayload();
-        pl.channel = "ReplicatorGUI";
-        pl.length = 11;
-//        Block.blockClay.getPickBlock(null, null, lmx, lmy, bt)
-//        Block.blockClay.id
-        switch(amt){
-            case -1:
-                pl.data = new byte[11];
-                pl.data[0] = 9;
-                pl.data[1] = (byte) (char) ((ent.xCoord >>> 24) & 0xFF);
-                pl.data[2] = (byte) (char) ((ent.xCoord >>> 16) & 0xFF);
-                pl.data[3] = (byte) (char) ((ent.xCoord >>> 8) & 0xFF);
-                pl.data[4] = (byte) (char) ((ent.xCoord >>> 0) & 0xFF);
-                pl.data[5] = (byte) (char) ((ent.yCoord >>> 8) & 0xFF);
-                pl.data[6] = (byte) (char) ((ent.yCoord >>> 0) & 0xFF);
-                pl.data[7] = (byte) (char) ((ent.zCoord >>> 24) & 0xFF);
-                pl.data[8] = (byte) (char) ((ent.zCoord >>> 16) & 0xFF);
-                pl.data[9] = (byte) (char) ((ent.zCoord >>> 8) & 0xFF);
-                pl.data[10] = (byte) (char) ((ent.zCoord >>> 0) & 0xFF);
-                break;
-            case 1:
-                pl.data = new byte[11];//
-                pl.data[0] = 10;
-                pl.data[1] = (byte) (char) ((ent.xCoord >>> 24) & 0xFF);
-                pl.data[2] = (byte) (char) ((ent.xCoord >>> 16) & 0xFF);
-                pl.data[3] = (byte) (char) ((ent.xCoord >>> 8) & 0xFF);
-                pl.data[4] = (byte) (char) ((ent.xCoord >>> 0) & 0xFF);
-                pl.data[5] = (byte) (char) ((ent.yCoord >>> 8) & 0xFF);
-                pl.data[6] = (byte) (char) ((ent.yCoord >>> 0) & 0xFF);
-                pl.data[7] = (byte) (char) ((ent.zCoord >>> 24) & 0xFF);
-                pl.data[8] = (byte) (char) ((ent.zCoord >>> 16) & 0xFF);
-                pl.data[9] = (byte) (char) ((ent.zCoord >>> 8) & 0xFF);
-                pl.data[10] = (byte) (char) ((ent.zCoord >>> 0) & 0xFF);
-                break;
-                
-                
-            default: return;
-        }
-        
-        PacketDispatcher.sendPacketToServer(pl); 
-    }
+//    void moveItemID(int amt){
+//        Packet250CustomPayload pl = new Packet250CustomPayload();
+//        pl.channel = "ReplicatorGUI";
+//        pl.length = 11;
+////        Block.blockClay.getPickBlock(null, null, lmx, lmy, bt)
+////        Block.blockClay.id
+//        switch(amt){
+//            case -1:
+//                pl.data = new byte[11];
+//                pl.data[0] = 9;
+//                pl.data[1] = (byte) (char) ((ent.xCoord >>> 24) & 0xFF);
+//                pl.data[2] = (byte) (char) ((ent.xCoord >>> 16) & 0xFF);
+//                pl.data[3] = (byte) (char) ((ent.xCoord >>> 8) & 0xFF);
+//                pl.data[4] = (byte) (char) ((ent.xCoord >>> 0) & 0xFF);
+//                pl.data[5] = (byte) (char) ((ent.yCoord >>> 8) & 0xFF);
+//                pl.data[6] = (byte) (char) ((ent.yCoord >>> 0) & 0xFF);
+//                pl.data[7] = (byte) (char) ((ent.zCoord >>> 24) & 0xFF);
+//                pl.data[8] = (byte) (char) ((ent.zCoord >>> 16) & 0xFF);
+//                pl.data[9] = (byte) (char) ((ent.zCoord >>> 8) & 0xFF);
+//                pl.data[10] = (byte) (char) ((ent.zCoord >>> 0) & 0xFF);
+//                break;
+//            case 1:
+//                pl.data = new byte[11];//
+//                pl.data[0] = 10;
+//                pl.data[1] = (byte) (char) ((ent.xCoord >>> 24) & 0xFF);
+//                pl.data[2] = (byte) (char) ((ent.xCoord >>> 16) & 0xFF);
+//                pl.data[3] = (byte) (char) ((ent.xCoord >>> 8) & 0xFF);
+//                pl.data[4] = (byte) (char) ((ent.xCoord >>> 0) & 0xFF);
+//                pl.data[5] = (byte) (char) ((ent.yCoord >>> 8) & 0xFF);
+//                pl.data[6] = (byte) (char) ((ent.yCoord >>> 0) & 0xFF);
+//                pl.data[7] = (byte) (char) ((ent.zCoord >>> 24) & 0xFF);
+//                pl.data[8] = (byte) (char) ((ent.zCoord >>> 16) & 0xFF);
+//                pl.data[9] = (byte) (char) ((ent.zCoord >>> 8) & 0xFF);
+//                pl.data[10] = (byte) (char) ((ent.zCoord >>> 0) & 0xFF);
+//                break;
+//                
+//                
+//            default: return;
+//        }
+//        
+//        PacketDispatcher.sendPacketToServer(pl); 
+//    }
     
     @Override
     protected void mouseClicked(int x, int y, int par3) {
@@ -150,49 +146,38 @@ public class GReplicator extends GuiContainer {
         lmx = x;
         lmy = y;
         System.out.println("MPRESS " + x + ", " + y);
-        
-        /*
-            162 93    173 101   (back)
-            203 93    214 101   (forward)
-        */
-        
-        if(lmx > 162 && lmx < 173 && lmy > 93 && lmy < 101){ // back
-            moveItemID(-1);
-        }else if (lmx > 203 && lmx < 214 && lmy > 93 && lmy < 101){ // forward
-            moveItemID(1);
-        }
-        
-//        if(ent.realinvswch)ent.realinv = null;
+
+//        
+//        if(lmx > 162 && lmx < 173 && lmy > 93 && lmy < 101){ // back
+//            moveItemID(-1);
+//        }else if (lmx > 203 && lmx < 214 && lmy > 93 && lmy < 101){ // forward
+//            moveItemID(1);
+//        }
 
     }
 
     @Override
     public void onGuiClosed() {
-        super.onGuiClosed(); //To change body of generated methods, choose Tools | Templates.
-//        System.exit(420);
         // hackish but I cant do something better right now
-        for(int i = 0; i < ent.watchedBy.size(); i++){
-//            if(ent.watchedBy.get(i)==null){
-//                ent.watchedBy.remove(i);
-//            }else
-            if(ent.watchedBy.get(i).getDisplayName().equals(ply.getDisplayName())){
-//                ent.watchedBy.remove(i);//not working
-//                break;
-            }
-        }
+        ent.watchedBy.clear();
+        super.onGuiClosed();
     }
     
-    //assets\replicatormod\textures\gui
-//    ResourceLocation largeFurnace = new ResourceLocation(ReplicatorMod.MODID, "textures/gui/replicator.png");
     static int texid = 0;
     boolean loaded = false;
-//    private ResourceLocation largeFurnace = new ResourceLocation("ReplicatorMod:com/nexustools/replicator/gui.png");
    
-    
     boolean typing = true;
     String tstring = "";
     String suggest = "";
     String suggestcar = "";
+    
+    void setSearchItem(int uuid){
+        int id =  (uuid >> 16);
+        int meta =  (uuid & 0xffff);
+        
+        
+        
+    }
 
     @Override
     protected void keyTyped(char par1, int par2) {
@@ -205,7 +190,7 @@ public class GReplicator extends GuiContainer {
             case 1: if(typing)super.keyTyped(par1, par2); // escape
             default: if(typing) {tstring += par1;strc = true;} break;
         }
-        if(!typing)super.keyTyped(par1, par2); //To change body of generated methods, choose Tools | Templates.
+        if(!typing)super.keyTyped(par1, par2);
         int rawid = -1;
         int id = -1;
         int meta = -1;
@@ -232,7 +217,7 @@ public class GReplicator extends GuiContainer {
             meta =  (rawid & 0xffff);
             System.out.println(smst + "-> " + rawid);
             if(smst.length()>1){
-                setItemID(rawid);
+                setSearchItem(rawid);
                 ent.cost = (int) (ItemNameDatabase.values.get(rawid) * TEReplicator.MAX_EU);
             }
         }
@@ -285,6 +270,7 @@ public class GReplicator extends GuiContainer {
         } catch (IOException ex) {
             Logger.getLogger(GReplicator.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         if(swch++>=bt){
             rt = System.currentTimeMillis();
             carrot = ! carrot && typing;
@@ -292,60 +278,32 @@ public class GReplicator extends GuiContainer {
             lblink = rt;
             swch = 0;
         }
-	    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-//	    mc.renderEngine.func_110577_a(largeFurnace);
+        
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, texid);
+
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
+
+        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+
+        int i1 = 0;
+        euv = ent.STORED_EU;
+        req = ent.cost;
+        incr = (int) ((euv*6d)/ TEReplicator.MAX_EU);
+        drawTexturedRect(x+150, y+8, 192,0,15,16);
+        drawTexturedRect(x+8, y+7, 176,incr*16,16,16);
+        if(ent.enoughEnergyToSynergize()){
+            drawTexturedRect(x+56, y+53, 192,32,16,16);
+        }else
+            drawTexturedRect(x+56, y+53, 192,16,16,16);
+
+        mc.fontRenderer.drawString(String.valueOf((long)euv)+"EU", x+26, y+12, 0);
+        mc.fontRenderer.drawString(String.valueOf((long)req)+"EU", x+92, y+12, 0);
+
+        if(carrot)mc.fontRenderer.drawString(tstring +colorchar+"7"+ carrotc + colorchar+"8" + suggestcar, x+35, y+40, 0);
+        else mc.fontRenderer.drawString(tstring + colorchar+"8" + suggest, x+35, y+40, 0);
             
-//            mc.renderEngine.bindTexture(largeFurnace);
-            GL11.glBindTexture(GL11.GL_TEXTURE_2D, texid);
-//            TextureObject to = (TextureObject)mc.renderEngine.mapTextureObjects.get(par1ResourceLocation);
-	    int x = (width - xSize) / 2;
-	    int y = (height - ySize) / 2;
-//            ent.inv.
-            
-//            System.out.println(x + ", " + y);
-	    drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-	   
-//	   
-//	    if(ent.isBurning())
-//	    {
-//		    int l = ent.getBurnTimeRemainingScaled(12);
-//		    drawTexturedModalRect(j + 82, (k + 71) - l, 176, 12 - l, 14, l + 2);
-//	    }
-//	    int i1 = emt.getCookProgressScaled(24, 0);
-//	    int j1 = ent.getCookProgressScaled(24, 1);
-            int i1 = 0;
-            euv = ent.STORED_EU;
-            req = ent.cost;
-            incr = (int) ((euv*6d)/ TEReplicator.MAX_EU);
-            int j1 = 1;// Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
-            
-            drawTexturedRect(x+150, y+8, 192,0,15,16);
-            
-            drawTexturedRect(x+8, y+7, 176,incr*16,16,16);
-            
-            if(ent.enoughEnergyToSynergize()){
-                drawTexturedRect(x+56, y+53, 192,32,16,16);
-            }else
-                drawTexturedRect(x+56, y+53, 192,16,16,16);
-            //Draws the specified string. Args: string, x, y, color
-            mc.fontRenderer.drawString(String.valueOf((long)euv)+"EU", x+26, y+12, 0);
-            mc.fontRenderer.drawString(String.valueOf((long)req)+"EU", x+92, y+12, 0);
-//            drawItemStack(ent.inv, 100,100, "");
-//            ItemStack s = ent.inv;
-//            if(s != null)
-            
-            
-            
-//            carrotc = '|';
-            
-            
-                if(carrot)mc.fontRenderer.drawString(tstring +colorchar+"7"+ carrotc + colorchar+"8" + suggestcar, x+35, y+40, 0);
-                else mc.fontRenderer.drawString(tstring + colorchar+"8" + suggest, x+35, y+40, 0);
-//            incr++;
-//            incr%=6;
-//            drawTexturedModalRect
-//	    drawTexturedModalRect(j + 77, k + 34, 176, 14, j1 + 1, 16);
-//	    drawTexturedModalRect(j + 77, k + 15, 176, 14, i1 + 1, 16);
     }
     
 }

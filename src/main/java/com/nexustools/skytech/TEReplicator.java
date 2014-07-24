@@ -28,8 +28,8 @@ import net.minecraftforge.common.MinecraftForge;
  */
 public class TEReplicator extends TileEntity implements IInventory, ISidedInventory, IEnergySink {
 
-    ItemStack inv = null;
-    ItemStack realinv = null;
+//    ItemStack inv = null;
+//    ItemStack realinv = null;
     
     public CopyOnWriteArrayList<EntityPlayer> watchedBy = new CopyOnWriteArrayList<EntityPlayer>();
     
@@ -38,31 +38,41 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         return 64;
     }
 
+    ItemStack output = null;
+    ItemStack search = null;
+    
     @Override
     public ItemStack getStackInSlot(int i) {
-//        System.out.println("getStackInSlot");
-        if(i==0)return realinv;
+        if(i == 0) return output;
         else return null;
+//        System.out.println("getStackInSlot");
+//        if(i==0)return realinv;
+//        else return null;
     }
     
-//    this.tra
-
     @Override
     public ItemStack decrStackSize(int i, int j) {
-//        if(!this.enoughEnergyToSynergize()) return null;
-        if(i != 0) return null;
-        System.out.println("decrStackSize");
-//        inv = null;
-        ItemStack tmp = realinv;
-        
-        if(tmp != null){
-            if(this.enoughEnergyToSynergize()){
-                STORED_EU -= this.cost;
-                sendEnPacket();
-            }
-            tmp.stackSize = 1;
+        if(i == 0){
+            if(output == null) return null;
+            ItemStack temp = output.copy();
+            output = null;
+            return temp;
         }else return null;
-        return tmp.copy(); //haaaaax
+//        if(!this.enoughEnergyToSynergize()) return null;
+//        if(i != 0) return null;
+//        System.out.println("decrStackSize");
+////        inv = null;
+//        ItemStack tmp = realinv;
+//        
+//        if(tmp != null){
+//            if(this.enoughEnergyToSynergize()){
+//                System.out.println("STORED_EU: " + STORED_EU + ", cost= " + this.cost + ", POST_STORED_EU=" + (STORED_EU-cost));
+//                STORED_EU -= this.cost;
+//                sendEnPacket();
+//            }
+//            tmp.stackSize = 1;
+//        }else return null;
+//        return tmp.copy(); //haaaaax
 //        return null; // stub?
     }
     
@@ -76,15 +86,23 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     @Override
     public void setInventorySlotContents(int i, ItemStack itemstack) {
         System.out.println("setInventorySlotContents");
-        int uid = -1;
-        //iid = (iid << 16) | (meta & 0xffff);
-        if(itemstack != null){
-            //itemstack.itemID
-            uid = (itemstack.itemID << 16) | (itemstack.getItemDamage() & 0xffff);
-            this.cost = (int) (MAX_EU*ItemNameDatabase.values.get(uid));
-        }
-        if(i==0 && itemstack != null){inv = itemstack;inv.stackSize = 1;}
-        if(this.enoughEnergyToSynergize())realinv = inv;
+//        int uid = -1;
+//        //iid = (iid << 16) | (meta & 0xffff);
+//        if(itemstack != null){
+//            //itemstack.itemID
+//            uid = (itemstack.itemID << 16) | (itemstack.getItemDamage() & 0xffff);
+//            this.cost = (int) (MAX_EU*ItemNameDatabase.values.get(uid));
+//        }
+//        if(i==0 && itemstack != null){inv = itemstack;inv.stackSize = 1;}
+//        if(this.enoughEnergyToSynergize())realinv = inv;
+    }
+    
+    public void setOutputSlotContents(ItemStack is){
+        output = is;
+    }
+    
+    public void setSearchSlotContents(ItemStack is){
+        search = is;
     }
 
     @Override
@@ -297,14 +315,14 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
             pt = 0;
         }
         if(this.enoughEnergyToSynergize()){
-            if(realinv == null)realinv = inv;
+//            if(realinv == null)realinv = inv;
         }else{
-            Side side = FMLCommonHandler.instance().getEffectiveSide();
-            if (side == Side.SERVER) {
-                realinv = null;
-            }else{
-                realinvswch = true;
-            }
+//            Side side = FMLCommonHandler.instance().getEffectiveSide();
+//            if (side == Side.SERVER) {
+//                realinv = null;
+//            }else{
+//                realinvswch = true;
+//            }
         }
         if (amount + STORED_EU > MAX_EU) {
             System.out.println("MAXING OUT");

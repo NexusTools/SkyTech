@@ -31,7 +31,19 @@ public class ReplicatorNet implements IPacketHandler {
         DataInputStream din = new DataInputStream(new ByteArrayInputStream(packet.data));
         try{
         switch(din.read()){
-            case 1: //if(packet.length == 14){
+            
+            case 12:{ // setSearchItem
+                break;
+            }
+            
+            case 13:{ // activate
+                break;
+            }
+            
+            
+            
+            //@Deprecated
+            case 1: //if(packet.length == 14){ 
                 try{
                     System.out.println("UIItemUpdate");
 //                int rawid = (short)((packet.data[1]&0xFF << 8) + (packet.data[2]&0xFF << 0));
@@ -114,6 +126,7 @@ public class ReplicatorNet implements IPacketHandler {
                 System.out.println("setEnergy");
                 break;
                 
+            //@Deprecated
             case 9: // back item id
                 System.out.println("backItem");
                 x = ((packet.data[1]&0xFF  << 24) + (packet.data[2]&0xFF  << 16) + (packet.data[3]&0xFF  << 8) + (packet.data[4]&0xFF  << 0));
@@ -135,7 +148,8 @@ public class ReplicatorNet implements IPacketHandler {
 //                    e.blockType.cre
                 }System.out.println("->backItem");
                 break;
-                
+            
+                //@Deprecated
             case 10: // forward item id
                 System.out.println("forwardItem");
                 x = ((packet.data[1]&0xFF  << 24) + (packet.data[2]&0xFF  << 16) + (packet.data[3]&0xFF  << 8) + (packet.data[4]&0xFF  << 0));
@@ -158,6 +172,7 @@ public class ReplicatorNet implements IPacketHandler {
                 }System.out.println("->forwardItem");
                 break;
                 
+                //@Deprecated
             case 11: // set item
                 x = din.readInt();
                 y = din.readShort();
