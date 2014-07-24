@@ -43,13 +43,6 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
 //    this
 
     /**
-     * Returns the ID of the items to drop on destruction.
-     */
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return Block.furnaceIdle.blockID;
-    }
-
-    /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
