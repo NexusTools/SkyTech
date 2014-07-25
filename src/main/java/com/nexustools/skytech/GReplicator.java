@@ -140,6 +140,8 @@ public class GReplicator extends GuiContainer {
 //        PacketDispatcher.sendPacketToServer(pl); 
 //    }
     
+//    this.mou
+    
     @Override
     protected void mouseClicked(int x, int y, int par3) {
         super.mouseClicked(x, y, par3); //To change body of generated methods, choose Tools | Templates.
@@ -176,10 +178,13 @@ public class GReplicator extends GuiContainer {
         int id =  (uuid >> 16);
         int meta =  (uuid & 0xffff);
         
-        ItemStack is = new ItemStack(Item.itemsList[id], 1);
-        is.setItemDamage(meta);
-        
-        this.ent.setSearchSlotContentsClient(is, uuid);
+        if(id>0){
+            try{
+                ItemStack is = new ItemStack(Item.itemsList[id], 1);
+                is.setItemDamage(meta);
+                this.ent.setSearchSlotContentsClient(is, uuid);
+            }catch(Throwable t){}
+        }
         
     }
 
@@ -262,6 +267,8 @@ public class GReplicator extends GuiContainer {
     long req = 0L;
     int bt = 32;
     
+    boolean mouseDownOnButton = false;
+    
     static final char colorchar = (char)0xA7;
     
     @Override
@@ -296,11 +303,14 @@ public class GReplicator extends GuiContainer {
         req = ent.cost;
         incr = (int) ((euv*6d)/ TEReplicator.MAX_EU);
         drawTexturedRect(x+150, y+8, 192,0,15,16);
-        drawTexturedRect(x+8, y+7, 176,incr*16,16,16);
-        if(ent.enoughEnergyToSynergize()){
-            drawTexturedRect(x+56, y+53, 192,32,16,16);
-        }else
-            drawTexturedRect(x+56, y+53, 192,16,16,16);
+        drawTexturedRect(x+8, y+7, 176,incr*16,16,16); // 176 97
+        if(ent.enoughEnergyToReplicate()){
+            drawTexturedRect(x+116, y+54, 176,97,55,14); // 97 -> 111
+        }
+//        if(ent.enoughEnergyToSynergize()){
+//            drawTexturedRect(x+56, y+53, 192,32,16,16);
+//        }else
+//            drawTexturedRect(x+56, y+53, 192,16,16,16);
 
         mc.fontRenderer.drawString(String.valueOf((long)euv)+"EU", x+26, y+12, 0);
         mc.fontRenderer.drawString(String.valueOf((long)req)+"EU", x+92, y+12, 0);

@@ -44,8 +44,12 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     
     @Override
     public ItemStack getStackInSlot(int i) {
-        if(i == 0) return output;
-        else return null;
+//        if(i == 0) return output;
+        switch(i){
+            case 0: return output;
+            case 1: return search;
+            default: return null;
+        }
 //        System.out.println("getStackInSlot");
 //        if(i==0)return realinv;
 //        else return null;
@@ -104,12 +108,14 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     }
     
     public void setSearchSlotContentsClient(ItemStack is, int uuid){
+        System.out.println("setSearchSlotContentsClient");
         search = is;
         cost = (int) (MAX_EU*ItemNameDatabase.values.get(uuid));
         sync(uuid);
     }
     
     void setSearchSlotContentsServer(int uuid) {
+        System.out.println("setSearchSlotContentsServer");
         int id =  (uuid >> 16);
         int meta =  (uuid & 0xffff);
         search = new ItemStack(Item.itemsList[id],1);
@@ -386,7 +392,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     public int cost = 1000000;
     
-    public boolean enoughEnergyToSynergize() {
+    public boolean enoughEnergyToReplicate() {
         return cost < STORED_EU;
     }
 

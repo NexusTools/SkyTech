@@ -25,7 +25,7 @@ public class ReplicatorNet implements IPacketHandler {
 
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
-        System.out.print("PACKET250CUSTOMPAYLOAD!!!!["+packet.data[0]+"] -> ");
+//        System.out.print("PACKET250CUSTOMPAYLOAD!!!!["+packet.data[0]+"] -> ");
         int x, y, z;
         TEReplicator e;
         DataInputStream din = new DataInputStream(new ByteArrayInputStream(packet.data));

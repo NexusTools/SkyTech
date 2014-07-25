@@ -23,21 +23,19 @@ public class Trip implements Comparable {
     
     @Override
     public int compareTo(Object o) {
-        System.out.println("COMPARETO");
         Trip t = (Trip)o;
         return (t.x == x && t.y == y && t.z == z)?0:1;
     }
 
     @Override
     public boolean equals(Object o) {
-        System.out.println("EQUALS");
         Trip t = (Trip)o;
         return (t.x == x && t.y == y && t.z == z);
     }
     
     @Override
     public int hashCode() {
-        return x+y+z%Integer.MAX_VALUE-Integer.MAX_VALUE/4+x&y&z+(x/z)+(x/y)+(y/z)+(z/x)+(y/x); // haaaaaax
+        return x+y+z%Integer.MAX_VALUE-Integer.MAX_VALUE/4+x&y&z+(x/(1+z))+(x/(1+y))+(y/(1+z))+(z/(1+x))+(y/(1+x)); // haaaaaax
     }
     
 }

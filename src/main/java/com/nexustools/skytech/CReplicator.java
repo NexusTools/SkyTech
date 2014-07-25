@@ -99,7 +99,8 @@ public class CReplicator extends Container {
     public CReplicator(final InventoryPlayer play, final TEReplicator ent){
         this.play = play;
         this.ent = ent;
-        addSlotToContainer(new Slot(ent, 0, 56, 53));
+        addSlotToContainer(new Slot(ent, 0, 96, 53));
+        addSlotToContainer(new Slot(ent, 1, 56, 53));
 //        this.addSlotToContainer(new Slot(ent, 0, 56, 53){
 //        
 //            @Override
