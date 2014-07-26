@@ -152,6 +152,9 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     public void replicateClient(){ // called by the client
         if(STORED_EU>cost){
             if(search == null) return;
+            if(output != null){
+                if(output.itemID != search.itemID || output.getItemDamage() != search.getItemDamage()) return;
+            }
             PacketDispatcher.sendPacketToServer(Packetron.generatePacket(14, xCoord, yCoord, zCoord));
 //            if(output == null){
 //                STORED_EU -= cost;
