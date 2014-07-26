@@ -323,7 +323,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     int pt = 0;
     
     public void sendEnPacket(){
-        System.out.println("sendEnPacket " + this.watchedBy.size());
+//        System.out.println("sendEnPacket " + this.watchedBy.size());
         if(this.watchedBy.size() == 0) return;
         Packet250CustomPayload pl = Packetron.generatePacket(15, (int)STORED_EU, xCoord, yCoord, zCoord);
         

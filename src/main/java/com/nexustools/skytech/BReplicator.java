@@ -36,6 +36,8 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
     protected BReplicator(int par1) {
         super(par1, Material.iron);
         this.setCreativeTab(CreativeTabs.tabRedstone);
+        setHardness(50.0F);
+        setResistance(2000.0F);
     }
     
 //    @SideOnly(Side.CLIENT)
