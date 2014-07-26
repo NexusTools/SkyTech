@@ -120,6 +120,10 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     }
     
     public void replicateServer(){
+        if(this.STORED_EU < this.cost+1) return;
+        // subtract energy
+        this.STORED_EU -= this.cost;
+        
         // tell CReplicator
         CReplicator c = SkyTech.instance.handler.containers.get(new Trip(xCoord, yCoord, zCoord));
         ItemStack nu = this.search.copy();
@@ -127,8 +131,10 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
             nu.stackSize += output.stackSize;
         }
         c.setOutput(nu);
+        
         // tell TEReplicator (this)
         this.output = nu;
+        
         // tell client
         int uuid = (nu.itemID << 16) | (nu.getItemDamage() & 0xffff);
         Packet250CustomPayload pack = Packetron.generatePacket(13, uuid, nu.stackSize, xCoord, yCoord, zCoord);
@@ -138,6 +144,8 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
                 PacketDispatcher.sendPacketToPlayer(pack, (Player) mplayer);
             }
         }
+        
+        this.sendEnPacket();
         
     }
     

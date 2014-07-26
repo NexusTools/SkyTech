@@ -149,7 +149,7 @@ public class GReplicator extends GuiContainer {
         super.mouseClicked(x, y, par3); //To change body of generated methods, choose Tools | Templates.
         lmx = x-xOffs;
         lmy = y-yOffs;
-        System.out.println("MPRESS " + x + ", " + y);
+//        System.out.println("MPRESS " + x + ", " + y);
         
         //Args: left, top, width, height, pointX, pointY.     Note:  left,top are local to the Gui   pointX,pointY are local to the screen
         boolean b = this.isPointInRegion(BTN_X, BTN_Y, BTN_W, BTN_H, x, y);
@@ -190,8 +190,8 @@ public class GReplicator extends GuiContainer {
 
     @Override
     protected void keyTyped(char par1, int par2) {
-        System.out.println(par1);
-        System.out.println(par2);
+//        System.out.println(par1);
+//        System.out.println(par2);
         if(par2 == 1) {super.keyTyped(par1, par2);return;}//return super.keyTyped(par1, par2); // I MISS C
         boolean strc = false;
         switch(par2){
@@ -225,7 +225,7 @@ public class GReplicator extends GuiContainer {
             rawid = ItemNameDatabase.database.get(smst);
             id =  (rawid >> 16);
             meta =  (rawid & 0xffff);
-            System.out.println(smst + "-> " + rawid);
+//            System.out.println(smst + "-> " + rawid);
             if(smst.length()>1){
                 setSearchItem(rawid);
                 ent.cost = (int) (ItemNameDatabase.values.get(rawid) * TEReplicator.MAX_EU);

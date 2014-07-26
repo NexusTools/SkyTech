@@ -72,7 +72,7 @@ public class ReplicatorNet implements IPacketHandler {
             //@Deprecated
             case 1: //if(packet.length == 14){ 
                 try{
-                    System.out.println("UIItemUpdate");
+//                    System.out.println("UIItemUpdate");
 //                int rawid = (short)((packet.data[1]&0xFF << 8) + (packet.data[2]&0xFF << 0));
                     /*
                     te(1);
@@ -88,7 +88,7 @@ public class ReplicatorNet implements IPacketHandler {
                     int stack = din.read();
                     ItemStack is = new ItemStack(Item.itemsList[index],stack);
                     is.setItemDamage(meta);
-                    System.out.println(is.getUnlocalizedName());
+//                    System.out.println(is.getUnlocalizedName());
                     x = din.readInt();
                     y = din.readShort();
                     z = din.readInt();
@@ -150,7 +150,7 @@ public class ReplicatorNet implements IPacketHandler {
 //                    if(e != null)
 //                        e.STORED_EU = (double)val;
 //                }
-                System.out.println("setEnergy");
+//                System.out.println("setEnergy");
                 break;
                 
             //@Deprecated
@@ -271,7 +271,7 @@ public class ReplicatorNet implements IPacketHandler {
                 
             default: System.out.println("ERR: Unknown opcode: " + packet.data[0]);break;
         }
-        System.out.println();
+//        System.out.println();
         }catch(Throwable t){}
     }
     

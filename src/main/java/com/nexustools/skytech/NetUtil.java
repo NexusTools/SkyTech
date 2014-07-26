@@ -22,7 +22,7 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 public class NetUtil {
     public static void sendPacket(String chan, byte[] pack, EntityPlayer player) {
         if(pack == null || chan == null || player == null){
-            System.out.println("ERR: NULLNESS: " + (chan==null?"true, ":"false, ") + (pack==null?"true, ":"false, ") + (player==null?"true":"false"));
+//            System.out.println("ERR: NULLNESS: " + (chan==null?"true, ":"false, ") + (pack==null?"true, ":"false, ") + (player==null?"true":"false"));
             return;
         }else{
 //            System.out.println("[NU]sendPacket(" + chan + ", byte[" + pack.length + "], " + player.getDisplayName() + ")");

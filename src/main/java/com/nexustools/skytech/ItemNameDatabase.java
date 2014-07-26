@@ -155,8 +155,8 @@ public class ItemNameDatabase {
             double dirtStandard = rarities.get((Block.dirt.blockID<< 16) | (0 & 0xffff));
             double bedStandard = rarities.get((Block.bedrock.blockID<< 16) | (0 & 0xffff));
             
-            System.out.println(stoneStandard);
-            System.out.println(stoneStandard/bedStandard);
+//            System.out.println(stoneStandard);
+//            System.out.println(stoneStandard/bedStandard);
 //            double goldval = 0.1d; // 10% of MAX_EU
 //            double gscalc = goldStandard / goldval;
             
@@ -210,7 +210,7 @@ public class ItemNameDatabase {
                 
                 values.put(database.get(str), percval/200d);
                 
-                System.out.println(str + "-> " + rar + " (uses " + ((int)(percval)) + "% of EU to synergize)");
+//                System.out.println(str + "-> " + rar + " (uses " + ((int)(percval)) + "% of EU to synergize)");
             }
 //            System.exit(420);
 

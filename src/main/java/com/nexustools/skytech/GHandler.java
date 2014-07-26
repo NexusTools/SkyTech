@@ -51,7 +51,7 @@ public class GHandler implements IGuiHandler{
     
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        System.out.println("getServerGuiElement(" + ID + ")");
+//        System.out.println("getServerGuiElement(" + ID + ")");
         TileEntity ent = world.getBlockTileEntity(x, y, z);
         
         if(ent instanceof TEReplicator){
@@ -71,7 +71,7 @@ public class GHandler implements IGuiHandler{
 
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        System.out.println("getClientGuiElement(" + ID + ")");
+//        System.out.println("getClientGuiElement(" + ID + ")");
         TileEntity ent = world.getBlockTileEntity(x, y, z);
         
         if(ent instanceof TEReplicator){
