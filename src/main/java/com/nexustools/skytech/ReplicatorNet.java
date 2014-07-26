@@ -68,6 +68,7 @@ public class ReplicatorNet implements IPacketHandler {
             }
             
             case 15:{
+                System.out.println("receiveEnPacket");
                 int eu = din.readInt();
                 x = din.readInt();
                 y = din.readInt();

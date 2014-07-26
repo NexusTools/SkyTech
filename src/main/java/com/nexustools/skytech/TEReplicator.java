@@ -55,7 +55,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     public ItemStack decrStackSize(int i, int j) {
         if(i == 0){
             if(output == null) return null;
-            ItemStack temp = output.copy();
+            ItemStack temp = output;
             output = null;
             return temp;
         }else return null;
@@ -233,7 +233,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     /// POWER STUFF ///
     public static final double MAX_EU = 4500000d;
-    public double STORED_EU = 4490000d;
+    public double STORED_EU = 1d;
 
     @Override
     public double demandedEnergyUnits() {
@@ -323,7 +323,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     int pt = 0;
     
     public void sendEnPacket(){
-        System.out.println("sendEnPacket");
+        System.out.println("sendEnPacket " + this.watchedBy.size());
         if(this.watchedBy.size() == 0) return;
         Packet250CustomPayload pl = Packetron.generatePacket(15, (int)STORED_EU, xCoord, yCoord, zCoord);
         

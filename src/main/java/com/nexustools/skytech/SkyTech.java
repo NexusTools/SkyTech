@@ -11,6 +11,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -19,7 +20,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
 import net.minecraft.network.packet.NetHandler;
@@ -82,7 +82,9 @@ public class SkyTech {
 //        MinecraftForge.
         BasicSkyblockScript.inject();
         try {
-            Cache.validateCache(Minecraft.getMinecraft().mcDataDir);
+//            Cache.validateCache(Minecraft.getMinecraft().mcDataDir);
+//            Cache.validateCache(new File("/home/minecraft/skytech/")); // TEMPORARY SERVER HACK FIX
+            Cache.validateCache(new File(System.getProperty("user.home")));
         } catch (IOException ex) {
             Logger.getLogger(SkyTech.class.getName()).log(Level.SEVERE, null, ex);
         }

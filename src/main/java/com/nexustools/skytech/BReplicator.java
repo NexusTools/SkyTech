@@ -22,8 +22,7 @@ import net.minecraft.world.World;
 
 public class BReplicator extends BlockContainer { // code taken from BlockFurnace
 
-    @SideOnly(Side.CLIENT)
-    private Icon[] icons = new Icon[8];
+
     
     
     public static final int IDX_FRONT = 4;//0 // top is left   /// left is right /// front is top // bottom is front
@@ -88,7 +87,7 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
      * Args: side, metadata
      */
     public Icon getIcon(int par1, int par2) {
-        return icons[par1];
+        return StaticIcons.icons[par1];
     }
 
     @SideOnly(Side.CLIENT)
@@ -100,11 +99,11 @@ public class BReplicator extends BlockContainer { // code taken from BlockFurnac
      */
     public void registerIcons(IconRegister r) {
         this.blockIcon = r.registerIcon("skytech:replicator");
-        icons[IDX_TOP] = icons[IDX_BOTTOM] = blockIcon;
-        icons[IDX_FRONT] = r.registerIcon("skytech:replicator-front");
-        icons[IDX_BACK] = r.registerIcon("skytech:replicator-rear");
-        icons[IDX_LEFT] = r.registerIcon("skytech:replicator-left");
-        icons[IDX_RIGHT] = r.registerIcon("skytech:replicator-right");
+        StaticIcons.icons[IDX_TOP] = StaticIcons.icons[IDX_BOTTOM] = blockIcon;
+        StaticIcons.icons[IDX_FRONT] = r.registerIcon("skytech:replicator-front");
+        StaticIcons.icons[IDX_BACK] = r.registerIcon("skytech:replicator-rear");
+        StaticIcons.icons[IDX_LEFT] = r.registerIcon("skytech:replicator-left");
+        StaticIcons.icons[IDX_RIGHT] = r.registerIcon("skytech:replicator-right");
 
     }
 

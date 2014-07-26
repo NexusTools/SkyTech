@@ -38,6 +38,29 @@ public class CReplicator extends Container {
         System.out.println("transferStackInSlot");
         return null;
     }
+    
+    // weird server bug fix
+    @Override
+    public void addCraftingToCrafters(ICrafting par1ICrafting)
+    {
+        if (this.crafters.contains(par1ICrafting))
+        {
+            throw new IllegalArgumentException("Listener already listening");
+        }
+        else
+        {
+            this.crafters.add(par1ICrafting);
+            par1ICrafting.sendContainerAndContentsToPlayer(this, this.getInventory());
+            this.detectAndSendChanges();
+        }
+    }
+    @Override
+    public void removeCraftingFromCrafters(ICrafting par1ICrafting)
+    {
+        this.crafters.remove(par1ICrafting);
+    }
+
+    
 //    
 //    int count = 0;
 //
@@ -95,6 +118,8 @@ public class CReplicator extends Container {
     
     public InventoryPlayer play;
     public TEReplicator ent;
+    
+//    this.
     
     public CReplicator(final InventoryPlayer play, final TEReplicator ent){
         this.play = play;
