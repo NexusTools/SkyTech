@@ -67,6 +67,16 @@ public class ReplicatorNet implements IPacketHandler {
                 break;
             }
             
+            case 15:{
+                int eu = din.readInt();
+                x = din.readInt();
+                y = din.readInt();
+                z = din.readInt();
+                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+                e.STORED_EU = (double)eu;
+                break;
+            }
+            
             
             
             //@Deprecated
@@ -126,32 +136,32 @@ public class ReplicatorNet implements IPacketHandler {
                 
                 break;
                 
-            case 8: // set energy (long)
-                long val = din.readLong();
-                x = din.readInt();
-                y = din.readShort();
-                z = din.readInt();
-                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
-                if(e != null)
-                    e.STORED_EU = (double)val;
-//                if(packet.length == 19){
-//                    long val = (((long)packet.data[1] << 56) +
-//                    ((long)(packet.data[2] & 255) << 48) +
-//                    ((long)(packet.data[3] & 255) << 40) +
-//                    ((long)(packet.data[4] & 255) << 32) +
-//                    ((long)(packet.data[5] & 255) << 24) +
-//                    ((packet.data[6] & 255) << 16) +
-//                    ((packet.data[7] & 255) <<  8) +
-//                    ((packet.data[8] & 255) <<  0));
-//                    x = ((packet.data[9]&0xFF  << 24) + (packet.data[10]&0xFF  << 16) + (packet.data[11]&0xFF  << 8) + (packet.data[12]&0xFF  << 0));
-//                    y = ((packet.data[13]&0xFF  << 8) + (packet.data[14]&0xFF  << 0));
-//                    z = ((packet.data[15]&0xFF  << 24) + (packet.data[16]&0xFF  << 16) + (packet.data[17]&0xFF  << 8) + (packet.data[18]&0xFF  << 0));
-//                    e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
-//                    if(e != null)
-//                        e.STORED_EU = (double)val;
-//                }
-//                System.out.println("setEnergy");
-                break;
+//            case 8: // set energy (long)
+//                long val = din.readLong();
+//                x = din.readInt();
+//                y = din.readShort();
+//                z = din.readInt();
+//                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+//                if(e != null)
+//                    e.STORED_EU = (double)val;
+////                if(packet.length == 19){
+////                    long val = (((long)packet.data[1] << 56) +
+////                    ((long)(packet.data[2] & 255) << 48) +
+////                    ((long)(packet.data[3] & 255) << 40) +
+////                    ((long)(packet.data[4] & 255) << 32) +
+////                    ((long)(packet.data[5] & 255) << 24) +
+////                    ((packet.data[6] & 255) << 16) +
+////                    ((packet.data[7] & 255) <<  8) +
+////                    ((packet.data[8] & 255) <<  0));
+////                    x = ((packet.data[9]&0xFF  << 24) + (packet.data[10]&0xFF  << 16) + (packet.data[11]&0xFF  << 8) + (packet.data[12]&0xFF  << 0));
+////                    y = ((packet.data[13]&0xFF  << 8) + (packet.data[14]&0xFF  << 0));
+////                    z = ((packet.data[15]&0xFF  << 24) + (packet.data[16]&0xFF  << 16) + (packet.data[17]&0xFF  << 8) + (packet.data[18]&0xFF  << 0));
+////                    e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+////                    if(e != null)
+////                        e.STORED_EU = (double)val;
+////                }
+////                System.out.println("setEnergy");
+//                break;
                 
             //@Deprecated
 //            case 9: // back item id

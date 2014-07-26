@@ -323,38 +323,16 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     int pt = 0;
     
     public void sendEnPacket(){
+        System.out.println("sendEnPacket");
         if(this.watchedBy.size() == 0) return;
-        byte[] data = new byte[19];
-        data[0] = 8; //case 8: // set energy (long)
-        long l = (long)STORED_EU;
-        data[1] = (byte)(l >>> 56);
-        data[2] = (byte)(l >>> 48);
-        data[3] = (byte)(l >>> 40);
-        data[4] = (byte)(l >>> 32);
-        data[5] = (byte)(l >>> 24);
-        data[6] = (byte)(l >>> 16);
-        data[7] = (byte)(l >>>  8);
-        data[8] = (byte)(l >>>  0);
-        data[9] = (byte) (char) ((this.xCoord >>> 24) & 0xFF);
-        data[10] = (byte) (char) ((this.xCoord >>> 16) & 0xFF);
-        data[11] = (byte) (char) ((this.xCoord >>> 8) & 0xFF);
-        data[12] = (byte) (char) ((this.xCoord >>> 0) & 0xFF);
-        data[13] = (byte) (char) ((this.yCoord >>> 8) & 0xFF);
-        data[14] = (byte) (char) ((this.yCoord >>> 0) & 0xFF);
-        data[15] = (byte) (char) ((this.zCoord >>> 24) & 0xFF);
-        data[16] = (byte) (char) ((this.zCoord >>> 16) & 0xFF);
-        data[17] = (byte) (char) ((this.zCoord >>> 8) & 0xFF);
-        data[18] = (byte)(char)((this.zCoord>>>  0) & 0xFF);
-        
-        
-//        NetUtil.sendPacket("ReplicatorGUI", cust.data, play.player);
+        Packet250CustomPayload pl = Packetron.generatePacket(15, (int)STORED_EU, xCoord, yCoord, zCoord);
         
         for(EntityPlayer e : this.watchedBy){
-            if(e != null)
-                NetUtil.sendPacket("ReplicatorGUI", data, e);
+            if(e != null){
+                EntityPlayerMP mplayer = (EntityPlayerMP) e;
+                PacketDispatcher.sendPacketToPlayer(pl, (Player) mplayer);
+            }
         }
-//        this
-        
     }
     
     boolean realinvswch = false;
