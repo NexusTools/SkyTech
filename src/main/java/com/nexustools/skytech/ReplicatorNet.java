@@ -44,10 +44,26 @@ public class ReplicatorNet implements IPacketHandler {
             }
             
             case 13:{//setOutputItem
+                int uuid = din.readInt();
+                int stacks = din.readInt();
+                x = din.readInt();
+                y = din.readInt();
+                z = din.readInt();
+                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+                int id =  (uuid >> 16);
+                int meta =  (uuid & 0xffff);
+                ItemStack is = new ItemStack(Item.itemsList[id], stacks);
+                is.setItemDamage(meta);
+                e.output = is;
                 break;
             }
             
             case 14:{ // activate
+                x = din.readInt();
+                y = din.readInt();
+                z = din.readInt();
+                e = (TEReplicator)(((EntityPlayer)player).worldObj.getBlockTileEntity(x, y, z));
+                e.replicateServer();
                 break;
             }
             

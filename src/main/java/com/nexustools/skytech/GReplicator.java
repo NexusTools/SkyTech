@@ -142,19 +142,19 @@ public class GReplicator extends GuiContainer {
     
 //    this.mou
     
+    final static int BTN_X=116,BTN_Y=54,  BTN_W=55,BTN_H=14;
+    
     @Override
     protected void mouseClicked(int x, int y, int par3) {
         super.mouseClicked(x, y, par3); //To change body of generated methods, choose Tools | Templates.
-        lmx = x;
-        lmy = y;
+        lmx = x-xOffs;
+        lmy = y-yOffs;
         System.out.println("MPRESS " + x + ", " + y);
-
-//        
-//        if(lmx > 162 && lmx < 173 && lmy > 93 && lmy < 101){ // back
-//            moveItemID(-1);
-//        }else if (lmx > 203 && lmx < 214 && lmy > 93 && lmy < 101){ // forward
-//            moveItemID(1);
-//        }
+        
+        //Args: left, top, width, height, pointX, pointY.     Note:  left,top are local to the Gui   pointX,pointY are local to the screen
+        boolean b = this.isPointInRegion(BTN_X, BTN_Y, BTN_W, BTN_H, x, y);
+        
+        if(b)ent.replicateClient();
 
     }
 
@@ -192,6 +192,7 @@ public class GReplicator extends GuiContainer {
     protected void keyTyped(char par1, int par2) {
         System.out.println(par1);
         System.out.println(par2);
+        if(par2 == 1) {super.keyTyped(par1, par2);return;}//return super.keyTyped(par1, par2); // I MISS C
         boolean strc = false;
         switch(par2){
             case 28: typing = !typing;
@@ -267,6 +268,8 @@ public class GReplicator extends GuiContainer {
     long req = 0L;
     int bt = 32;
     
+    int xOffs = 0, yOffs = 0;
+    
     boolean mouseDownOnButton = false;
     
     static final char colorchar = (char)0xA7;
@@ -293,30 +296,30 @@ public class GReplicator extends GuiContainer {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texid);
 
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
+        xOffs = (width - xSize) / 2;
+        yOffs = (height - ySize) / 2;
 
-        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        drawTexturedModalRect(xOffs, yOffs, 0, 0, xSize, ySize);
 
         int i1 = 0;
         euv = ent.STORED_EU;
         req = ent.cost;
         incr = (int) ((euv*6d)/ TEReplicator.MAX_EU);
-        drawTexturedRect(x+150, y+8, 192,0,15,16);
-        drawTexturedRect(x+8, y+7, 176,incr*16,16,16); // 176 97
+        drawTexturedRect(xOffs+150, yOffs+8, 192,0,15,16);
+        drawTexturedRect(xOffs+8, yOffs+7, 176,incr*16,16,16); // 176 97
         if(ent.enoughEnergyToReplicate()){
-            drawTexturedRect(x+116, y+54, 176,97,55,14); // 97 -> 111
+            drawTexturedRect(xOffs+116, yOffs+54, 176,97,55,14); // 97 -> 111
         }
 //        if(ent.enoughEnergyToSynergize()){
 //            drawTexturedRect(x+56, y+53, 192,32,16,16);
 //        }else
 //            drawTexturedRect(x+56, y+53, 192,16,16,16);
 
-        mc.fontRenderer.drawString(String.valueOf((long)euv)+"EU", x+26, y+12, 0);
-        mc.fontRenderer.drawString(String.valueOf((long)req)+"EU", x+92, y+12, 0);
+        mc.fontRenderer.drawString(String.valueOf((long)euv)+"EU", xOffs+26, yOffs+12, 0);
+        mc.fontRenderer.drawString(String.valueOf((long)req)+"EU", xOffs+92, yOffs+12, 0);
 
-        if(carrot)mc.fontRenderer.drawString(tstring +colorchar+"7"+ carrotc + colorchar+"8" + suggestcar, x+35, y+40, 0);
-        else mc.fontRenderer.drawString(tstring + colorchar+"8" + suggest, x+35, y+40, 0);
+        if(carrot)mc.fontRenderer.drawString(tstring +colorchar+"7"+ carrotc + colorchar+"8" + suggestcar, xOffs+35, yOffs+40, 0);
+        else mc.fontRenderer.drawString(tstring + colorchar+"8" + suggest, xOffs+35, yOffs+40, 0);
             
     }
     

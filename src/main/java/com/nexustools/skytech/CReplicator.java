@@ -162,5 +162,11 @@ public class CReplicator extends Container {
 //        return true && ent.enoughEnergyToSynergize(); // haax
         return true;
     }
+
+    void setOutput(ItemStack is) {
+        Slot s = (Slot) inventorySlots.get(0);
+        s.inventory.setInventorySlotContents(0, is);// System.out.println(" SUCCESS");
+        s.onSlotChanged();
+    }
     
 }

@@ -7,6 +7,7 @@ package com.nexustools.skytech;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -14,11 +15,13 @@ import ic2.api.energy.tile.IEnergySink;
 import ic2.api.info.Info;
 import java.util.concurrent.CopyOnWriteArrayList;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,9 +31,6 @@ import net.minecraftforge.common.MinecraftForge;
  * @author Luke
  */
 public class TEReplicator extends TileEntity implements IInventory, ISidedInventory, IEnergySink {
-
-//    ItemStack inv = null;
-//    ItemStack realinv = null;
     
     public CopyOnWriteArrayList<EntityPlayer> watchedBy = new CopyOnWriteArrayList<EntityPlayer>();
     
@@ -44,15 +44,11 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     
     @Override
     public ItemStack getStackInSlot(int i) {
-//        if(i == 0) return output;
         switch(i){
             case 0: return output;
             case 1: return search;
             default: return null;
         }
-//        System.out.println("getStackInSlot");
-//        if(i==0)return realinv;
-//        else return null;
     }
     
     @Override
@@ -123,19 +119,45 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         cost = (int) (MAX_EU*ItemNameDatabase.values.get(uuid));
     }
     
-    public void replicate(){
-        if(output == null){
-            STORED_EU -= cost;
-            output = search.copy();
-            sync();
-        }else{
-            if(output.itemID == search.itemID){
-                if(output.getItemDamage() == search.getItemDamage()){
-                    STORED_EU -= cost;
-                    output.stackSize++; // work? D:
-                    sync();
-                }
+    public void replicateServer(){
+        // tell CReplicator
+        CReplicator c = SkyTech.instance.handler.containers.get(new Trip(xCoord, yCoord, zCoord));
+        ItemStack nu = this.search.copy();
+        if(output != null && output.itemID == nu.itemID && output.getItemDamage() == nu.getItemDamage()){
+            nu.stackSize += output.stackSize;
+        }
+        c.setOutput(nu);
+        // tell TEReplicator (this)
+        this.output = nu;
+        // tell client
+        int uuid = (nu.itemID << 16) | (nu.getItemDamage() & 0xffff);
+        Packet250CustomPayload pack = Packetron.generatePacket(13, uuid, nu.stackSize, xCoord, yCoord, zCoord);
+        for(EntityPlayer e : watchedBy){
+            if(e != null){
+                EntityPlayerMP mplayer = (EntityPlayerMP) e;
+                PacketDispatcher.sendPacketToPlayer(pack, (Player) mplayer);
             }
+        }
+        
+    }
+    
+    public void replicateClient(){ // called by the client
+        if(STORED_EU>cost){
+            if(search == null) return;
+            PacketDispatcher.sendPacketToServer(Packetron.generatePacket(14, xCoord, yCoord, zCoord));
+//            if(output == null){
+//                STORED_EU -= cost;
+////                output = search.copy();
+////                sync();
+//            }else{
+//                if(output.itemID == search.itemID){
+//                    if(output.getItemDamage() == search.getItemDamage()){
+//                        STORED_EU -= cost;
+////                        output.stackSize++; // work? D:
+////                        sync();
+//                    }
+//                }
+//            }
         }
     }
     
@@ -161,22 +183,17 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         return 64;
     }
     
-    
-
     @Override
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
         return true;
-//        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
     @Override
     public void openChest() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void closeChest() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -205,7 +222,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     /// POWER STUFF ///
     public static final double MAX_EU = 4500000d;
-    public double STORED_EU = 1d;
+    public double STORED_EU = 4490000d;
 
     @Override
     public double demandedEnergyUnits() {
@@ -214,7 +231,6 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     boolean addedToEnet;
 
-// in-world te forwards >>
     /**
      * Forward for the base TileEntity's updateEntity(), used for creating the
      * energy net link. Either updateEntity or onLoaded have to be used.
@@ -235,10 +251,6 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         if (!addedToEnet
                 && !FMLCommonHandler.instance().getEffectiveSide().isClient()
                 && Info.isIc2Available()) {
-//worldObj = .worldObj;
-//xCoord = parent.xCoord;
-//yCoord = parent.yCoord;
-//zCoord = parent.zCoord;
 
             MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 
@@ -270,13 +282,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
             addedToEnet = false;
         }
     }
-
-    /**
-     * Forward for the base TileEntity's readFromNBT(), used for loading the
-     * state.
-     *     
-* @param tag Compound tag as supplied by TileEntity.readFromNBT()
-     */
+    
     @Override
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
@@ -285,13 +291,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
         STORED_EU = data.getDouble("energy");
     }
-
-    /**
-     * Forward for the base TileEntity's writeToNBT(), used for saving the
-     * state.
-     *     
-* @param tag Compound tag as supplied by TileEntity.writeToNBT()
-     */
+    
     @Override
     public void writeToNBT(NBTTagCompound tag) {
         try {
@@ -350,22 +350,10 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     @Override
     public double injectEnergyUnits(ForgeDirection directionFrom, double amount) {
-//        System.out.println("injectEnergyUnits " + amount + ", " + STORED_EU);
         if(pt>8 || amount > 512){
             sendEnPacket();
             pt = 0;
         }
-//        if(this.enoughEnergyToSynergize()){
-////            this.set
-////            if(realinv == null)realinv = inv;
-//        }else{
-////            Side side = FMLCommonHandler.instance().getEffectiveSide();
-////            if (side == Side.SERVER) {
-////                realinv = null;
-////            }else{
-////                realinvswch = true;
-////            }
-//        }
         if (amount + STORED_EU > MAX_EU) {
             System.out.println("MAXING OUT");
             double rem = MAX_EU - STORED_EU;
