@@ -189,15 +189,15 @@ public class GReplicator extends GuiContainer {
     }
 
     @Override
-    protected void keyTyped(char par1, int par2) {
+    protected void keyTyped(char par1, int par2) { // really needs to be cleaned up
 //        System.out.println(par1);
 //        System.out.println(par2);
         if(par2 == 1) {super.keyTyped(par1, par2);return;}//return super.keyTyped(par1, par2); // I MISS C
         boolean strc = false;
         switch(par2){
-            case 28: typing = !typing;
+            case 28: /*typing = !typing;*/break;
             case 14: if(tstring.length()>0){tstring = tstring.substring(0,tstring.length()-1);strc=true;}break;
-            case 1: if(typing)super.keyTyped(par1, par2); // escape
+            case 1: if(typing)super.keyTyped(par1, par2);break; // escape
             default: if(typing) {tstring += par1;strc = true;} break;
         }
         if(!typing)super.keyTyped(par1, par2);
