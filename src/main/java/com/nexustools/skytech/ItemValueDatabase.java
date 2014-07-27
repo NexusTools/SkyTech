@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.minecraft.block.Block;
@@ -26,7 +27,7 @@ import net.minecraft.util.StatCollector;
  *
  * @author Luke
  */
-public class ItemNameDatabase {
+public class ItemValueDatabase {
 
     static HashMap<Integer, String> reverse = new HashMap<Integer, String>();
     static HashMap<String, Integer> database = new HashMap<String, Integer>();
@@ -74,7 +75,7 @@ public class ItemNameDatabase {
             try {
                 in = Cache.getInputStream("commondb.txt");
             } catch (IOException ex) {
-                Logger.getLogger(ItemNameDatabase.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ItemValueDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }
             if(in == null) return;
             String st = "";
@@ -86,7 +87,7 @@ public class ItemNameDatabase {
                     st += new String(b, 0, r);
                 }
             } catch (IOException ex) {
-                Logger.getLogger(ItemNameDatabase.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ItemValueDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             String[] spl = st.split("\n");
@@ -96,6 +97,7 @@ public class ItemNameDatabase {
 //                System.out.println(uln);
                 String[] data = spl[i].split("\\:"); // 1:0:549934136
                 int iid = Integer.parseInt(data[0]);
+                int oiid = iid;
                 int meta = Integer.parseInt(data[1]);
                 Item it = null;
                 
@@ -111,6 +113,20 @@ public class ItemNameDatabase {
                 if(is != null){
                     is.setItemDamage(meta);
                     String str = it.getItemDisplayName(is).toLowerCase(); // haaaaax
+                    if(str.contains("leaves")){
+                        Block bl = Block.blocksList[oiid]; // please work
+                        int sapid = bl.idDropped(meta, new Random(), Integer.MAX_VALUE);
+                        int sapmet = bl.damageDropped(meta);
+                        ItemStack tmp = new ItemStack(Item.itemsList[sapid],1);
+                        if(tmp != null){
+                            tmp.setItemDamage(sapmet);
+                            is = tmp;
+                            it = Item.itemsList[sapid];
+                            meta = sapmet;
+                            str = it.getItemDisplayName(is).toLowerCase();
+                            iid = (sapid << 16) | (meta & 0xffff);
+                        }
+                    }
                     database.put(str, iid);
                     reverse.put(iid, str);
                     int base = 0;

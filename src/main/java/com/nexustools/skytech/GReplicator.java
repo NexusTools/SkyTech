@@ -56,7 +56,7 @@ public class GReplicator extends GuiContainer {
         super(new CReplicator(play, ent));
         this.ent = ent;
         this.ply = play.player;
-        ItemNameDatabase.checkScrape();
+        ItemValueDatabase.checkScrape();
     }
     
     int lmx = 0;
@@ -207,7 +207,7 @@ public class GReplicator extends GuiContainer {
         if(strc){
             int smallest = Integer.MAX_VALUE;
             String smst = "";
-            for(String s : ItemNameDatabase.database.keySet()){
+            for(String s : ItemValueDatabase.database.keySet()){
                 int c = StringDist.compute(s,tstring);
                 if(s.startsWith(tstring) || s.equals(tstring)){
                     smallest = Integer.MIN_VALUE;
@@ -222,13 +222,13 @@ public class GReplicator extends GuiContainer {
                     smst = s;
                 }
             }
-            rawid = ItemNameDatabase.database.get(smst);
+            rawid = ItemValueDatabase.database.get(smst);
             id =  (rawid >> 16);
             meta =  (rawid & 0xffff);
 //            System.out.println(smst + "-> " + rawid);
             if(smst.length()>1){
                 setSearchItem(rawid);
-                ent.cost = (int) (ItemNameDatabase.values.get(rawid) * TEReplicator.MAX_EU);
+                ent.cost = (int) (ItemValueDatabase.values.get(rawid) * TEReplicator.MAX_EU);
             }
         }
         

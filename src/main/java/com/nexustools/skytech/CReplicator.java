@@ -122,7 +122,7 @@ public class CReplicator extends Container {
 //    this.
     
     public CReplicator(final InventoryPlayer play, final TEReplicator ent){
-        ItemNameDatabase.checkScrape();
+        ItemValueDatabase.checkScrape();
         this.play = play;
         this.ent = ent;
         addSlotToContainer(new Slot(ent, 0, 96, 53));
