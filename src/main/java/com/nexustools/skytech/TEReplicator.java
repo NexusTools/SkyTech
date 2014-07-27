@@ -119,11 +119,21 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         cost = (int) (MAX_EU*ItemNameDatabase.values.get(uuid));
     }
     
-    public void replicateServer(){
+    public void replicateServer(int uuid_base){
         System.out.println("replicateServer->call " + STORED_EU + ", " + cost);
         if(this.STORED_EU < this.cost+1) return;
         // subtract energy
         this.STORED_EU -= this.cost;
+        
+        //JIT Search->Out Update
+        //int index =  (rawid >> 16);
+        //int meta =  (rawid & 0xffff);
+        int iid = (uuid_base >> 16);
+        int meta = (uuid_base & 0xffff);
+        
+        this.search = new ItemStack(Item.itemsList[iid],1);
+        this.search.setItemDamage(meta);
+        cost = (int) (MAX_EU*ItemNameDatabase.values.get(uuid_base));
         
         // tell CReplicator
         System.out.println("replicateServer->tell CReplicator");
@@ -162,7 +172,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
                 if(output.itemID != search.itemID || output.getItemDamage() != search.getItemDamage()) return;
             }
             System.out.println("replicateClient->all good");
-            PacketDispatcher.sendPacketToServer(Packetron.generatePacket(14, xCoord, yCoord, zCoord));
+            PacketDispatcher.sendPacketToServer(Packetron.generatePacket(14, xCoord, yCoord, zCoord, (search.itemID << 16) | (search.getItemDamage() & 0xffff)));
 //            if(output == null){
 //                STORED_EU -= cost;
 ////                output = search.copy();
