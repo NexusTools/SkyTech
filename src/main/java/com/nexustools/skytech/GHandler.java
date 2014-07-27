@@ -55,15 +55,16 @@ public class GHandler implements IGuiHandler{
         TileEntity ent = world.getBlockTileEntity(x, y, z);
         
         if(ent instanceof TEReplicator){
+//            return new CReplicator(player.inventory, (TEReplicator)ent);
             Trip t = new Trip(x,y,z);
-            if(containers.containsKey(t)){
-                return containers.get(t);
-            }else{
+//            if(containers.containsKey(t)){
+////                return containers.get(t);
+//            }else{
                 CReplicator tr = new CReplicator(player.inventory, (TEReplicator)ent);
                 containers.put(t, tr);
                 return tr;
-            }
-//            return new CReplicator(player.inventory, (TEReplicator)ent);
+//            }
+////            return new CReplicator(player.inventory, (TEReplicator)ent);
         } else System.out.println("--- TileEntity is not TEReplicator!");
         
         return null;
@@ -74,18 +75,11 @@ public class GHandler implements IGuiHandler{
 //        System.out.println("getClientGuiElement(" + ID + ")");
         TileEntity ent = world.getBlockTileEntity(x, y, z);
         
-//        if(ent instanceof TEReplicator){
-//            Trip t = new Trip(x,y,z);
-//            if(guis.containsKey(t)){
-//                return guis.get(t);
-//            }else{
-//                GReplicator tr = new GReplicator(player.inventory, (TEReplicator)ent);
-//                guis.put(t, tr);
-//                return tr;
-//            }
-//        } else System.out.println("--- TileEntity is not TEReplicator!");
+        if(ent instanceof TEReplicator){
+            return new GReplicator(player.inventory, (TEReplicator)ent);
+        } else System.out.println("--- TileEntity is not TEReplicator!");
 //        
-        return new GReplicator(player.inventory, (TEReplicator)ent);
+        return null;
     }
     
 }

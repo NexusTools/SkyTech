@@ -127,6 +127,16 @@ public class CReplicator extends Container {
         this.ent = ent;
         addSlotToContainer(new Slot(ent, 0, 96, 53));
         addSlotToContainer(new Slot(ent, 1, 56, 53));
+        
+        if(ent.search != null){
+            Slot s = (Slot) inventorySlots.get(1);
+            s.inventory.setInventorySlotContents(1, ent.search);
+        }
+        
+        if(ent.output != null){
+            Slot s = (Slot) inventorySlots.get(0);
+            s.inventory.setInventorySlotContents(0, ent.output);
+        }
 //        this.addSlotToContainer(new Slot(ent, 0, 56, 53){
 //        
 //            @Override
