@@ -35,7 +35,11 @@ public class Trip implements Comparable {
     
     @Override
     public int hashCode() {
-        return x+y+z%Integer.MAX_VALUE-Integer.MAX_VALUE/4+x&y&z+(x/(1+Math.abs(z)))+(x/(1+Math.abs(y)))+(y/(1+Math.abs(z)))+(z/(1+Math.abs(x)))+(y/(1+Math.abs(x))); // haaaaaax
+        int result = (int) (x ^ (x >>> 32)); // internet magic
+        result = 31 * result + (int) (y ^ (y >>> 32));
+        result = 31 * result + (int) (z ^ (z >>> 32));
+        return result;
+//        return x+y+z%Integer.MAX_VALUE-Integer.MAX_VALUE/4+x&y&z+(x/(1+Math.abs(z)))+(x/(1+Math.abs(y)))+(y/(1+Math.abs(z)))+(z/(1+Math.abs(x)))+(y/(1+Math.abs(x))); // haaaaaax
     }
     
 }

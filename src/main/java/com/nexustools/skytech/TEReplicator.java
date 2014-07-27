@@ -120,11 +120,13 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     }
     
     public void replicateServer(){
+        System.out.println("replicateServer->call " + STORED_EU + ", " + cost);
         if(this.STORED_EU < this.cost+1) return;
         // subtract energy
         this.STORED_EU -= this.cost;
         
         // tell CReplicator
+        System.out.println("replicateServer->tell CReplicator");
         CReplicator c = SkyTech.instance.handler.containers.get(new Trip(xCoord, yCoord, zCoord));
         ItemStack nu = this.search.copy();
         if(output != null && output.itemID == nu.itemID && output.getItemDamage() == nu.getItemDamage()){
@@ -133,9 +135,11 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         c.setOutput(nu);
         
         // tell TEReplicator (this)
+        System.out.println("replicateServer->tell TEReplicator");
         this.output = nu;
         
         // tell client
+        System.out.println("replicateServer->tell client (" + watchedBy.size()+")");
         int uuid = (nu.itemID << 16) | (nu.getItemDamage() & 0xffff);
         Packet250CustomPayload pack = Packetron.generatePacket(13, uuid, nu.stackSize, xCoord, yCoord, zCoord);
         for(EntityPlayer e : watchedBy){
@@ -150,11 +154,14 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     }
     
     public void replicateClient(){ // called by the client
+        System.out.println("replicateClient");
         if(STORED_EU>cost){
             if(search == null) return;
             if(output != null){
+                System.out.println("replicateClient->output is not null");
                 if(output.itemID != search.itemID || output.getItemDamage() != search.getItemDamage()) return;
             }
+            System.out.println("replicateClient->all good");
             PacketDispatcher.sendPacketToServer(Packetron.generatePacket(14, xCoord, yCoord, zCoord));
 //            if(output == null){
 //                STORED_EU -= cost;
@@ -233,7 +240,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     /// POWER STUFF ///
     public static final double MAX_EU = 4500000d;
-    public double STORED_EU = 1d;
+    public double STORED_EU = 4000000d;
 
     @Override
     public double demandedEnergyUnits() {
