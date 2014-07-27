@@ -213,7 +213,7 @@ public class ReplicatorNet implements IPacketHandler {
             }
             
             case 13:{//setOutputItem
-                System.out.println("setOutputItem");
+//                System.out.println("setOutputItem");
                 int uuid = din.readInt();
                 int stacks = din.readInt();
                 x = din.readInt();
@@ -229,7 +229,7 @@ public class ReplicatorNet implements IPacketHandler {
             }
             
             case 14:{ // activate
-                System.out.println("Activate");
+//                System.out.println("Activate");
                 x = din.readInt();
                 y = din.readInt();
                 z = din.readInt();

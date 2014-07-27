@@ -86,7 +86,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     @Override
     public void setInventorySlotContents(int i, ItemStack itemstack) {
-        System.out.println("setInventorySlotContents");
+//        System.out.println("setInventorySlotContents");
 //        int uid = -1;
 //        //iid = (iid << 16) | (meta & 0xffff);
 //        if(itemstack != null){
@@ -104,14 +104,14 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     }
     
     public void setSearchSlotContentsClient(ItemStack is, int uuid){
-        System.out.println("setSearchSlotContentsClient");
+//        System.out.println("setSearchSlotContentsClient");
         search = is;
         cost = (int) (MAX_EU*ItemValueDatabase.values.get(uuid));
         sync(uuid);
     }
     
     void setSearchSlotContentsServer(int uuid) {
-        System.out.println("setSearchSlotContentsServer");
+//        System.out.println("setSearchSlotContentsServer");
         int id =  (uuid >> 16);
         int meta =  (uuid & 0xffff);
         search = new ItemStack(Item.itemsList[id],1);
@@ -136,7 +136,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         this.search.setItemDamage(meta);
         
         // tell CReplicator
-        System.out.println("replicateServer->tell CReplicator");
+//        System.out.println("replicateServer->tell CReplicator");
         CReplicator c = SkyTech.instance.handler.containers.get(new Trip(xCoord, yCoord, zCoord));
         ItemStack nu = this.search.copy();
         if(output != null && output.itemID == nu.itemID && output.getItemDamage() == nu.getItemDamage()){
@@ -145,11 +145,11 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         c.setOutput(nu);
         
         // tell TEReplicator (this)
-        System.out.println("replicateServer->tell TEReplicator");
+//        System.out.println("replicateServer->tell TEReplicator");
         this.output = nu;
         
         // tell client
-        System.out.println("replicateServer->tell client (" + watchedBy.size()+")");
+//        System.out.println("replicateServer->tell client (" + watchedBy.size()+")");
         int uuid = (nu.itemID << 16) | (nu.getItemDamage() & 0xffff);
         Packet250CustomPayload pack = Packetron.generatePacket(13, uuid, nu.stackSize, xCoord, yCoord, zCoord);
         for(EntityPlayer e : watchedBy){
@@ -226,7 +226,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        System.out.println("isItemValidForSlot");
+//        System.out.println("isItemValidForSlot");
         return false; // stub
     }
 
@@ -237,13 +237,13 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        System.out.println("canInsertItem");
+//        System.out.println("canInsertItem");
         return false; // stub
     }
 
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
-        System.out.println("canExtractItem");
+//        System.out.println("canExtractItem");
         if(i == 0)return true; // stub
         else return false;
     }
