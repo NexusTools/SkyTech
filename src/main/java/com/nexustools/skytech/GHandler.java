@@ -47,7 +47,7 @@ public class GHandler implements IGuiHandler{
     */
     
     HashMap<Trip, CReplicator> containers = new HashMap<Trip, CReplicator>();
-    HashMap<Trip, GReplicator> guis = new HashMap<Trip, GReplicator>();
+//    HashMap<Trip, GReplicator> guis = new HashMap<Trip, GReplicator>();
     
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -74,18 +74,18 @@ public class GHandler implements IGuiHandler{
 //        System.out.println("getClientGuiElement(" + ID + ")");
         TileEntity ent = world.getBlockTileEntity(x, y, z);
         
-        if(ent instanceof TEReplicator){
-            Trip t = new Trip(x,y,z);
-            if(guis.containsKey(t)){
-                return guis.get(t);
-            }else{
-                GReplicator tr = new GReplicator(player.inventory, (TEReplicator)ent);
-                guis.put(t, tr);
-                return tr;
-            }
-        } else System.out.println("--- TileEntity is not TEReplicator!");
-        
-        return null;
+//        if(ent instanceof TEReplicator){
+//            Trip t = new Trip(x,y,z);
+//            if(guis.containsKey(t)){
+//                return guis.get(t);
+//            }else{
+//                GReplicator tr = new GReplicator(player.inventory, (TEReplicator)ent);
+//                guis.put(t, tr);
+//                return tr;
+//            }
+//        } else System.out.println("--- TileEntity is not TEReplicator!");
+//        
+        return new GReplicator(player.inventory, (TEReplicator)ent);
     }
     
 }

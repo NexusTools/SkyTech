@@ -120,6 +120,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
     }
     
     public void replicateServer(int uuid_base){
+        cost = (int) (MAX_EU*ItemNameDatabase.values.get(uuid_base));
         System.out.println("replicateServer->call " + STORED_EU + ", " + cost);
         if(this.STORED_EU < this.cost+1) return;
         // subtract energy
@@ -133,7 +134,6 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
         
         this.search = new ItemStack(Item.itemsList[iid],1);
         this.search.setItemDamage(meta);
-        cost = (int) (MAX_EU*ItemNameDatabase.values.get(uuid_base));
         
         // tell CReplicator
         System.out.println("replicateServer->tell CReplicator");
