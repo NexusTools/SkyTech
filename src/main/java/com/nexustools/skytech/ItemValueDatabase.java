@@ -117,15 +117,17 @@ public class ItemValueDatabase {
                         Block bl = Block.blocksList[oiid]; // please work
                         int sapid = bl.idDropped(meta, new Random(), Integer.MAX_VALUE);
                         int sapmet = bl.damageDropped(meta);
-                        ItemStack tmp = new ItemStack(Item.itemsList[sapid],1);
-                        if(tmp != null){
-                            tmp.setItemDamage(sapmet);
-                            is = tmp;
-                            it = Item.itemsList[sapid];
-                            meta = sapmet;
-                            str = it.getItemDisplayName(is).toLowerCase();
-                            iid = (sapid << 16) | (meta & 0xffff);
-                        }
+                        try{
+                            ItemStack tmp = new ItemStack(Item.itemsList[sapid],1);
+                            if(tmp != null){
+                                tmp.setItemDamage(sapmet);
+                                is = tmp;
+                                it = Item.itemsList[sapid];
+                                meta = sapmet;
+                                str = it.getItemDisplayName(is).toLowerCase();
+                                iid = (sapid << 16) | (meta & 0xffff);
+                            }
+                        }catch(Throwable t){System.out.println("SkyTech: Error processing tree leaves: " + str);}
                     }
                     database.put(str, iid);
                     reverse.put(iid, str);
