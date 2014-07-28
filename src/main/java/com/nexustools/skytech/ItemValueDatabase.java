@@ -71,6 +71,7 @@ public class ItemValueDatabase {
 //                short id = (short) (uid >> 16);
 //                short metadata = (short) (uid & 0xffff);
         if (needsScrape) {
+            needsScrape = false;
             InputStream in = null;
             try {
                 in = Cache.getInputStream("commondb.txt");
