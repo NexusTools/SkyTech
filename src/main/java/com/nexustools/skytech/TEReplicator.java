@@ -250,7 +250,7 @@ public class TEReplicator extends TileEntity implements IInventory, ISidedInvent
 
     /// POWER STUFF ///
     public static final double MAX_EU = 4500000d;
-    public double STORED_EU = 4000000d;
+    public double STORED_EU = 1d;
 
     @Override
     public double demandedEnergyUnits() {

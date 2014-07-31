@@ -71,6 +71,15 @@ public class ItemValueDatabase {
 //                short id = (short) (uid >> 16);
 //                short metadata = (short) (uid & 0xffff);
         if (needsScrape) {
+            
+            // extra safe bug fix thing
+            reverse.clear();
+            database.clear();
+            rarities.clear();
+            values.clear();
+            // end
+            
+            
             needsScrape = false;
             InputStream in = null;
             try {
@@ -224,6 +233,9 @@ public class ItemValueDatabase {
 
                     if(strl.contains("iron")){
                         percval /= 2;
+                    }
+                    if(strl.contains("clay") || strl.equals("clay")){
+                        percval = 3;
                     }
                 }
                 
