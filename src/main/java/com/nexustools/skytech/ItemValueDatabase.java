@@ -83,7 +83,7 @@ public class ItemValueDatabase {
             needsScrape = false;
             InputStream in = null;
             try {
-                in = Cache.getInputStream("commondb.txt");
+                in = Cache.getInputStream("commondb-tppi.txt");
             } catch (IOException ex) {
                 Logger.getLogger(ItemValueDatabase.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -216,8 +216,8 @@ public class ItemValueDatabase {
                 
                 percval = bedperc;
                 
-                if(percval < 2){
-                    percval = 2;
+                if(percval < 1){
+                    percval = 1;
                 }
                 
                 String strl = str.toLowerCase();
@@ -228,11 +228,12 @@ public class ItemValueDatabase {
                     }
 
                     if(strl.contains("copper") || strl.contains("tin") || strl.contains("certus")){
-                        percval = 3;
+                        percval = 4;
                     }
 
                     if(strl.contains("iron")){
-                        percval /= 2;
+//                        percval /= 2;
+                        percval = 3;
                     }
                     if(strl.contains("clay") || strl.equals("clay")){
                         percval = 3;

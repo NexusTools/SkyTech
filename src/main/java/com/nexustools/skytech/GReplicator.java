@@ -222,13 +222,18 @@ public class GReplicator extends GuiContainer {
                     smst = s;
                 }
             }
-            rawid = ItemValueDatabase.database.get(smst);
-            id =  (rawid >> 16);
-            meta =  (rawid & 0xffff);
-//            System.out.println(smst + "-> " + rawid);
-            if(smst.length()>1){
-                setSearchItem(rawid);
-                ent.cost = (int) (ItemValueDatabase.values.get(rawid) * TEReplicator.MAX_EU);
+            
+            try{
+                rawid = ItemValueDatabase.database.get(smst);
+                id =  (rawid >> 16);
+                meta =  (rawid & 0xffff);
+    //            System.out.println(smst + "-> " + rawid);
+                if(smst.length()>1){
+                    setSearchItem(rawid);
+                    ent.cost = (int) (ItemValueDatabase.values.get(rawid) * TEReplicator.MAX_EU);
+                }
+            }catch(Throwable t){
+                System.out.println("Error getting search item: " + (smst==null?"null":smst));
             }
         }
         

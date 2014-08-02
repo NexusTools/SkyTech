@@ -148,26 +148,22 @@ public class StructureGen {
             }
         }
         
-        ItemStack[] nonvanilla = new ItemStack[3];
-        
-        try{
-            nonvanilla[0] = new ItemStack(Item.itemsList[650], 0);//650:1
-            nonvanilla[0].setItemDamage(1);
-        }catch(Throwable t){}
+        ItemStack[] nonvanilla = new ItemStack[2];
         try{
             //15158:20 insulated copper wire
-            nonvanilla[1] = new ItemStack(Item.itemsList[30184], 3); // 30184:0
-            nonvanilla[1].setItemDamage(0);
+            nonvanilla[0] = new ItemStack(Item.itemsList[30184], 3); // 30184:0
+            nonvanilla[0].setItemDamage(0);
         }catch(Throwable t){}
         
         try{
-            nonvanilla[2] = new ItemStack(Item.itemsList[3468], 2);
+            nonvanilla[1] = new ItemStack(Item.itemsList[3468], 1);
 //            nonvanilla[2].setItemDamage(0);
         }catch(Throwable t){}
         /*
         
         1x replicator
-        1x medium solar array
+        --1x medium solar array
+        1x generator
         3x insulated copper wire (why not lul)
         3x lava block
         3x ice block
@@ -194,7 +190,6 @@ public class StructureGen {
             
             nonvanilla[0],
             nonvanilla[1],
-            nonvanilla[2],
             
             new ItemStack(Item.melon, 1),
             new ItemStack(Item.pumpkinSeeds, 1),

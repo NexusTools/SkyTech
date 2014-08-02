@@ -155,9 +155,9 @@ public class ReplicatorNet implements IPacketHandler {
 //            }
 //        }
         //add(new RB(Block.bedrock.blockID, 0, 60, 0));
-        if(w.getBlockId(chck.x+poi.x*512, chck.y, chck.z + poi.y*512) != chck.id) // haaaax
+        if(w.getBlockId(chck.x+poi.x*Constants.SKY_DIST, chck.y, chck.z + poi.y*Constants.SKY_DIST) != chck.id) // haaaax
             for (final RB b : StructureGen.skyblock) {
-                w.setBlock(b.x + poi.x * 512, b.y, b.z + poi.y * 512, b.id, b.meta, b.flags);
+                w.setBlock(b.x + poi.x * Constants.SKY_DIST, b.y, b.z + poi.y * Constants.SKY_DIST, b.id, b.meta, b.flags);
                 if(b.inv != null){
                     new Thread(new Runnable() {
 
@@ -165,7 +165,7 @@ public class ReplicatorNet implements IPacketHandler {
                         public void run() {
                             try {
                                 Thread.sleep(10000);
-                                TileEntityChest t = (TileEntityChest)w.getBlockTileEntity(b.x + poi.x * 512, b.y, b.z + poi.y * 512);
+                                TileEntityChest t = (TileEntityChest)w.getBlockTileEntity(b.x + poi.x * Constants.SKY_DIST, b.y, b.z + poi.y * Constants.SKY_DIST);
                                 for(int i = 0; i < b.inv.length; i++){
                                     try{
                                         if(b.inv[i].itemID == 650){ // TEMPORARY FTB FIX (no idea why this is happening, I think something is weirdly cached
@@ -186,10 +186,10 @@ public class ReplicatorNet implements IPacketHandler {
                 }
             }
         
-        p.setSpawnChunk(new ChunkCoordinates(poi.x*512, 68, poi.y*512), true);
+        p.setSpawnChunk(new ChunkCoordinates(poi.x*Constants.SKY_DIST, 68, poi.y*Constants.SKY_DIST), true);
         
-        p.setLocationAndAngles(poi.x*512, 68, poi.y*512, 0, 0);
-        PacketDispatcher.sendPacketToPlayer(Packetron.generatePacket(16, poi.x*512, 68, poi.y*512), (Player)p);
+        p.setLocationAndAngles(poi.x*Constants.SKY_DIST, 68, poi.y*Constants.SKY_DIST, 0, 0);
+        PacketDispatcher.sendPacketToPlayer(Packetron.generatePacket(16, poi.x*Constants.SKY_DIST, 68, poi.y*Constants.SKY_DIST), (Player)p);
     }
 
     @Override

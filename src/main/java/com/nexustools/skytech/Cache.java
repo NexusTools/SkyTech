@@ -20,7 +20,7 @@ import java.net.URL;
  */
 public class Cache {
     
-    static final String[] cachedEntries = new String[]{"replicator.png", "commondb.txt"};
+    static final String[] cachedEntries = new String[]{"replicator.png", "commondb-tppi.txt"};
     
     static String cachedir = "./";
     
