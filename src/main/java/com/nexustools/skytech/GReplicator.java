@@ -56,7 +56,7 @@ public class GReplicator extends GuiContainer {
         super(new CReplicator(play, ent));
         this.ent = ent;
         this.ply = play.player;
-        ItemValueDatabase.checkScrape();
+        ItemValueDatabase.checkScrape(null);
     }
     
     int lmx = 0;

@@ -66,7 +66,7 @@ public class ItemValueDatabase {
         return sortedMap;
     }
 
-    public static void checkScrape() {
+    public static void checkScrape(String signaturemodifierhack) {
 //  int uid = (id << 16) | (meta & 0xffff);
 //                short id = (short) (uid >> 16);
 //                short metadata = (short) (uid & 0xffff);
@@ -189,10 +189,13 @@ public class ItemValueDatabase {
 //            double gscalc = goldStandard / goldval;
             
             
-            
+            final int hack = (2272 << 16) | (5 & 0xffff);
 //            System.out.println(goldStandard);
             
             for(String str : database.keySet()){
+                int iid = database.get(str);
+                short itid = (short) (iid >> 16);
+                short metadata = (short) (iid & 0xffff);
                 double rar = (double)rarities.get(database.get(str));
                 int times = 0;
                 while(rar > gol){ // haax
@@ -222,22 +225,50 @@ public class ItemValueDatabase {
                 
                 String strl = str.toLowerCase();
                 
+                boolean hak2 = false;
+                
                 if(!strl.contains("berry")){
                     if(strl.contains("coal") || strl.equals("coal")){ // I like to be overzealous sometimes because I'm too lazy
+                        System.out.println("valmod->coal[" + percval + "]");
                         percval = 2;
-                    }
+                    }else
 
                     if(strl.contains("copper") || strl.contains("tin") || strl.contains("certus")){
+                        System.out.println("valmod->coppertincertus[" + percval + "]");
                         percval = 4;
-                    }
+                    }else
 
                     if(strl.contains("iron")){
 //                        percval /= 2;
+                        System.out.println("valmod->iron[" + percval + "]");
                         percval = 3;
-                    }
+                    }else
                     if(strl.contains("clay") || strl.equals("clay")){
+                        System.out.println("valmod->clay[" + percval + "]");
                         percval = 3;
-                    }
+                    }else
+                    if(strl.contains("redstone") || strl.equals("redstone")){
+                        System.out.println("valmod->redstone[" + percval + "]");
+                        percval /= 3;
+                    }else
+                    
+                    if(strl.contains("gold") || strl.equals("gold")){
+                        System.out.println("valmod->gold[" + percval + "]");
+                        percval *= 6;
+                    }else
+                    
+                    if(strl.contains("bauxi") || strl.equals("bauxite")){
+                        System.out.println("valmod->bauxite[" + percval + "]");
+                        hak2 = true;
+                        percval /= 2.4f;
+                    }else
+                        System.out.println("valmod->unknown:" + itid + ":" + metadata + ":" + strl + "[" + percval + "]");
+                    
+                }
+                
+                if(!hak2 && hack == iid){
+                    System.out.println("Using hacked modifier!!");
+                    percval /= 2.4f;
                 }
                 
                 values.put(database.get(str), percval/200d);
